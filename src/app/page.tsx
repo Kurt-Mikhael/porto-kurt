@@ -1,103 +1,140 @@
-import Image from "next/image";
+"use client";
+
+import { Circle1,Circle2, CircleBorder, CircleBorder1,CircleBorder2,CircleBorder3 } from "@/components/shapes";
+import TypewriterText from "./components/typewriter-text";
+import { FlipCardContainer, FlipCardList } from "@/app/components/flip-card";
+import Image from 'next/image';
+import { Card3DList } from "./components/card-3d";
+import Image1 from 'next/image';
+import { MetalCardList } from "./components/metal-card";  
+import { Footer } from "@/components/footer";
+import { useState, useEffect } from "react";
+import { useIntersectionObserver } from "./hooks/hooks";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  const homeSection = useIntersectionObserver();
+  const aboutSection = useIntersectionObserver();
+  const interestsSection = useIntersectionObserver();
+  const projectsSection = useIntersectionObserver();
+  const experiencesSection = useIntersectionObserver();
+  const contactSection = useIntersectionObserver();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className={`flex flex-col items-center font-sans  justify-between min-h-screen p-24 gap-30 overflow-hidden transition-all duration-1000 ease-out ${
+      isLoaded 
+        ? 'opacity-100 translate-y-0' 
+        : 'opacity-0 translate-y-10'
+    }`}>
+      <section id="home" ref={homeSection.ref} className={`w-full flex flex-col items-center transition-all duration-1000 ease-out ${
+        homeSection.isIntersecting 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-20'
+      }`}>
+        <h1 className="text-4xl font-bold  text-center max-w-3xl mt-25" style={{background: "linear-gradient(to right, #c94b4b, #4b134f)", backgroundClip: "text", WebkitBackgroundClip: "text", color:"transparent", textShadow: "0 5px 15px rgba(145, 92, 182, .4)"}} >Welcome to My Website</h1>
+        <h1 className="text-6xl font-bold  text-center max-w-4xl" style={{background: "linear-gradient(to right, #c94b4b, #4b134f)", backgroundClip: "text", WebkitBackgroundClip: "text", color:"transparent",textShadow: "0 5px 15px rgba(145, 92, 182, .4) "}} >Hello, My Name is Kurt!</h1>
+        <div className="flex flex-row items-center gap-8 mt-40">
+          <Image 
+            src="/foto-porto.jpg" alt="Profile Picture" 
+            width={300} 
+            height={300} 
+            className="rounded-full border-white shadow-lg aspect-square object-cover "
+            style={{boxShadow : "0 5px 15px rgba(145, 92, 182, .4)",}}/>
+          <p
+            className="font-bold justify-center text-white max-w-4xl text-justify z-0"
+            style={{ textShadow: "0 5px 15px rgba(145, 92, 182, .4)" }}
+          > Welcome! I'm Kurt, an Informatics Engineering student at ITB who is enthusiastic about creating innovative digital solutions. My academic journey is centered around two main pillars: Software Engineering and Data Science. I believe that the combination of robust code and data-driven insights is the key to building products that are both intelligent and impactful.
+            Within the realm of Software Engineering, my passion lies in front-end development. I enjoy the process of transforming complex ideas into clean, engaging, and accessible user interfaces for everyone.</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      <section id="about" ref={aboutSection.ref} className={`w-full flex flex-col items-center transition-all duration-1000 ease-out ${
+        aboutSection.isIntersecting 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-20'
+      }`}>
+        <div ref={interestsSection.ref} className={`mt-20 mb-8 transition-all duration-1000 ease-out delay-200 ${
+          interestsSection.isIntersecting 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+        }`}>
+          <TypewriterText 
+          text="Here are my interests." 
+          className="text-4xl font-bold text-white max-w-3xl text-center" 
+          style={{textShadow: "0 5px 15px rgba(145, 92, 182, .4) "}} 
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+        </div>
+        <div className={`mb-16 transition-all duration-1000 ease-out delay-400 ${
+          interestsSection.isIntersecting 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+        }`}>
+          <FlipCardContainer>
+          <FlipCardList />
+          </FlipCardContainer>
+        </div>
+        
+        <div ref={projectsSection.ref} className={`mt-20 transition-all duration-1000 ease-out ${
+          projectsSection.isIntersecting 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+        }`}>
+          <TypewriterText 
+          text="Here are my projects." 
+          className="text-4xl font-bold text-white max-w-3xl text-center" 
+          style={{textShadow: "0 5px 15px rgba(145, 92, 182, .4) "}} 
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+        </div>
+        <div className={`mb-16 transition-all duration-1000 ease-out delay-200 ${
+          projectsSection.isIntersecting 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+        }`}>
+          <Card3DList />
+        </div>
+        
+        <div ref={experiencesSection.ref} className={`mt-20 transition-all duration-1000 ease-out ${
+          experiencesSection.isIntersecting 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+        }`}>
+          <TypewriterText 
+          text="Here are my experiences." 
+          className="text-4xl font-bold text-white max-w-3xl text-center" 
+          style={{textShadow: "0 5px 15px rgba(145, 92, 182, .4) "}} 
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+        <div className={`mb-16 transition-all duration-1000 ease-out delay-200 ${
+          experiencesSection.isIntersecting 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-20'
+        }`}>
+          <MetalCardList />
+        </div>
+      </section>
+
+      <section id="contact" ref={contactSection.ref} className={`w-full flex flex-col items-center transition-all duration-1000 ease-out ${
+        contactSection.isIntersecting 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-20'
+      }`}>
+        <Footer />
+      </section>
+      
+      <Circle1/>
+      <CircleBorder1 />
+      <Circle2/>
+      <CircleBorder2 />
+      <CircleBorder3 />
     </div>
   );
 }
