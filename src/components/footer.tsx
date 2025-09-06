@@ -13,7 +13,7 @@ export function Footer() {
               Connect with Me
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              I'm always open to new opportunities and collaborations. Feel free to reach out!
+              I&#39;m always open to new opportunities and collaborations. Feel free to reach out!
             </p>
           </div>
 
