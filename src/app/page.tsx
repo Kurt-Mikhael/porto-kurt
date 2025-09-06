@@ -1,11 +1,10 @@
 "use client";
 
-import { Circle1,Circle2, CircleBorder, CircleBorder1,CircleBorder2,CircleBorder3 } from "@/components/shapes";
+import { Circle1,Circle2, CircleBorder1,CircleBorder2,CircleBorder3 } from "@/components/shapes";
 import TypewriterText from "./components/typewriter-text";
 import { FlipCardContainer, FlipCardList } from "@/app/components/flip-card";
 import Image from 'next/image';
 import { Card3DList } from "./components/card-3d";
-import Image1 from 'next/image';
 import { MetalCardList } from "./components/metal-card";  
 import { Footer } from "@/components/footer";
 import { useState, useEffect } from "react";
@@ -52,7 +51,7 @@ export default function Home() {
           <p
             className="font-bold justify-center text-white max-w-4xl text-justify z-0"
             style={{ textShadow: "0 5px 15px rgba(145, 92, 182, .4)" }}
-          > Welcome! I'm Kurt, an Informatics Engineering student at ITB who is enthusiastic about creating innovative digital solutions. My academic journey is centered around two main pillars: Software Engineering and Data Science. I believe that the combination of robust code and data-driven insights is the key to building products that are both intelligent and impactful.
+          > Welcome! I&#39;m Kurt, an Informatics Engineering student at ITB who is enthusiastic about creating innovative digital solutions. My academic journey is centered around two main pillars: Software Engineering and Data Science. I believe that the combination of robust code and data-driven insights is the key to building products that are both intelligent and impactful.
             Within the realm of Software Engineering, my passion lies in front-end development. I enjoy the process of transforming complex ideas into clean, engaging, and accessible user interfaces for everyone.</p>
         </div>
       </section>
