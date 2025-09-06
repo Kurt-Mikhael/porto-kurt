@@ -14,7 +14,6 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   
   const homeSection = useIntersectionObserver();
-  const aboutSection = useIntersectionObserver();
   const interestsSection = useIntersectionObserver();
   const projectsSection = useIntersectionObserver();
   const experiencesSection = useIntersectionObserver();
@@ -34,7 +33,7 @@ export default function Home() {
         ? 'opacity-100 translate-y-0' 
         : 'opacity-0 translate-y-10'
     }`}>
-      <section id="home" ref={homeSection.ref} className={`w-full flex flex-col items-center transition-all duration-1000 ease-out ${
+      <section id="home" ref={homeSection.ref} className={`w-full flex flex-col items-center min-h-screen transition-all duration-1000 ease-out ${
         homeSection.isIntersecting 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-20'
@@ -56,12 +55,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" ref={aboutSection.ref} className={`w-full flex flex-col items-center transition-all duration-1000 ease-out ${
-        aboutSection.isIntersecting 
+      <section id="about" ref={interestsSection.ref} className={`w-full flex flex-col items-center min-h-screen transition-all duration-1000 ease-out ${
+        interestsSection.isIntersecting 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-20'
       }`}>
-        <div ref={interestsSection.ref} className={`mt-20 mb-8 transition-all duration-1000 ease-out delay-200 ${
+        <div className={`mt-15 mb-8 transition-all duration-1000 ease-out delay-200 ${
           interestsSection.isIntersecting 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-20'
@@ -81,8 +80,14 @@ export default function Home() {
           <FlipCardList />
           </FlipCardContainer>
         </div>
+      </section>
         
-        <div ref={projectsSection.ref} className={`mt-20 transition-all duration-1000 ease-out ${
+      <section ref={projectsSection.ref} className={`w-full flex flex-col items-center min-h-screen transition-all duration-1000 ease-out ${
+        projectsSection.isIntersecting 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-20'
+      }`}>
+        <div className={`mt-20 transition-all duration-1000 ease-out ${
           projectsSection.isIntersecting 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-20'
@@ -100,8 +105,14 @@ export default function Home() {
         }`}>
           <Card3DList />
         </div>
+      </section>
         
-        <div ref={experiencesSection.ref} className={`mt-20 transition-all duration-1000 ease-out ${
+      <section ref={experiencesSection.ref} className={`w-full flex flex-col items-center min-h-screen transition-all duration-1000 ease-out ${
+        experiencesSection.isIntersecting 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-20'
+      }`}>
+        <div className={`mt-20 transition-all duration-1000 ease-out ${
           experiencesSection.isIntersecting 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-20'

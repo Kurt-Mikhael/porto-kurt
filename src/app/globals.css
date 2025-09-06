@@ -405,4 +405,11 @@
 }
 
 
+html {
+  scroll-snap-type: y mandatory;
+}
 
+section {
+  scroll-snap-align: start;
+  min-height: 100vh; /* Pastikan setiap section minimal setinggi viewport */
+}

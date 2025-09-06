@@ -1,22 +1,14 @@
 "use client";
-
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 
 export default function Navbar() {
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
   if (element) {
-    if (sectionId === 'contact') {
-      window.scrollTo({
-        top: element.offsetTop - 100, // Offset to prevent overflow
-        behavior: 'smooth'
-      });
-    } else {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start' 
-      });
-    }
+    window.scrollTo({
+      top: element.offsetTop - 100, 
+      behavior: 'smooth'
+    });
   }
 };
 
