@@ -134,7 +134,7 @@ export function FlipCardList() {
       <FlipCard
         frontContent={
           <div>
-            <h2 className="text-2xl font-bold mb-4">Designn Thinking & Creativity</h2>
+            <h2 className="text-2xl font-bold mb-4">Design Thinking & Creativity</h2>
             <span className="fizzy-bubble"></span>
             <span className="fizzy-bubble"></span>
             <span className="fizzy-bubble"></span>

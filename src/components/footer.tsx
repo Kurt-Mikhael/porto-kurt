@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950 text-white py-6 mt-12 rounded-lg"
+    <footer className="bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950 text-white py-6  rounded-lg "
             style={{boxShadow :"0 5px 15px rgba(145, 92, 182, .4)"}}
             >
       <div className="container mx-auto px-6">

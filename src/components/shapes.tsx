@@ -2,7 +2,7 @@ import React from "react";
 
 export function Circle1() {
   return (
-    <div className="circle1 absolute -right-20 top-150"
+    <div className="circle1 top-125 lg:block absolute  lg:-right-20 lg:top-150 -z-1"
       style={{
         position : "absolute",
         width: "500px",
@@ -69,7 +69,7 @@ export function CircleBorder2() {
 export function CircleBorder1() {
   return (
     <div
-      className="absolute -right-55 top-110 -z-1"
+      className="absolute lg:-right-55 top-90 lg:top-110 -z-1"
       style={{
         width: "800px",
         height: "800px",
@@ -89,10 +89,8 @@ export function CircleBorder1() {
 export function CircleBorder3() {
   return (
     <div
-      className="absolute bottom-20 -right-15 -z-1"
+      className="absolute hidden lg:block bottom-80 -right-15 -z-1 lg:w-250 lg:h-250"
       style={{
-        width: "1000px",
-        height: "1000px",
         borderBottom: "8px solid #FDBB2D",
         borderLeft: "8px solid #FDBB2D",
         borderRight: "8px solid #FDBB2D",

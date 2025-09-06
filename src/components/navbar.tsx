@@ -13,7 +13,7 @@ const scrollToSection = (sectionId: string) => {
 };
 
   return (
-    <div className="w-full fixed flex justify-center py-4 z-50">
+    <div className="w-full fixed flex justify-center py-4 z-5">
       <div className="bg-black flex justify-center py-3 px-8 w-80 rounded-lg" style={{boxShadow :"0 5px 15px rgba(145, 92, 182, .4)"}}>
         <NavigationMenu className="text-white">
           <NavigationMenuList className="flex space-x-4">
