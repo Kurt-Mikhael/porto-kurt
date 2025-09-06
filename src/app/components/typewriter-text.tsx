@@ -21,8 +21,11 @@ export default function TypewriterText({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted) {
-          setIsVisible(true);
-          setHasStarted(true);
+          // Tambahkan delay 900ms sebelum mulai animasi typewriter
+          setTimeout(() => {
+            setIsVisible(true);
+            setHasStarted(true);
+          }, 900);
         }
       },
       {
@@ -52,8 +55,9 @@ export default function TypewriterText({
 
   return (
     <p ref={elementRef} className={className} style={style}>
-      {displayed}
-      <span className="border-r-2 border-white animate-pulse lg:inline block lg:text-left text-center w-full lg:w-auto">&nbsp;</span>
+      {/* Tampilkan teks kosong sampai typewriter dimulai */}
+      {isVisible ? displayed : ""}
+      <span className={`border-r-2 border-white animate-pulse ml-1 inline-block ${!isVisible ? 'invisible' : ''}`}>&nbsp;</span>
     </p>
   );
 }
