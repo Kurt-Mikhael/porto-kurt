@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { memo } from 'react';
 import interestsData from '@/data/interests.json';
 
 interface InterestCardProps {
@@ -8,13 +8,14 @@ interface InterestCardProps {
   className?: string;
 }
 
-export function FlipCard({ title, description, className = "" }: InterestCardProps) {
+const FlipCard = memo(function FlipCard({ title, description, className = "" }: InterestCardProps) {
   return (
     <div
-      className={`group relative w-72 h-96 cursor-default overflow-hidden rounded-3xl 
+      className={`group relative w-full sm:w-80 md:w-72 lg:w-80 h-96 cursor-default overflow-hidden rounded-3xl 
                   bg-zinc-900 border border-zinc-700/70 shadow-xl 
                   transition-all duration-500 hover:scale-[1.04] hover:shadow-2xl hover:-translate-y-3 
                   ${className}`}
+      style={{ willChange: "transform" }}
     >
       <div className="h-full flex flex-col p-8 relative">
         
@@ -47,11 +48,12 @@ export function FlipCard({ title, description, className = "" }: InterestCardPro
                       opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl" />
     </div>
   );
-}
+});
 
+export { FlipCard };
 export function FlipCardContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto px-4 py-8">
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto px-4 py-4 md:py-8">
       {children}
     </div>
   );

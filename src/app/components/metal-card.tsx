@@ -1,4 +1,7 @@
+"use client";
+
 import Image from 'next/image';
+import { memo } from 'react';
 import experiencesData from '@/data/experiences.json';
 
 interface MetalCardProps {
@@ -9,9 +12,12 @@ interface MetalCardProps {
     className?: string;
 }
 
-export function MetalCard({ logoSrc, logoAlt, title, description, className = "" }: MetalCardProps) {
+const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, className = "" }: MetalCardProps) {
     return (
-        <div className={`relative drop-shadow-xl overflow-hidden rounded-xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 w-80 h-48 sm:w-96 sm:h-56 lg:w-150 lg:h-60 ${className}`}>
+        <div 
+          className={`relative drop-shadow-xl overflow-hidden rounded-xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 w-80 h-48 sm:w-96 sm:h-56 lg:w-150 lg:h-60 ${className}`}
+          style={{ willChange: "transform" }}
+        >
             <div className="absolute flex flex-col lg:flex-row items-center justify-center text-white z-[1] opacity-90 rounded-xl inset-0.5 bg-gradient-to-br from-purple-900/80 via-purple-800/80 to-indigo-900/80 p-3 sm:p-4">
                 <div className="mb-0">
                     <Image 
@@ -20,6 +26,7 @@ export function MetalCard({ logoSrc, logoAlt, title, description, className = ""
                         width={80}
                         height={80}
                         className="object-contain w-16 h-16 sm:w-20 sm:h-20 mt-0 sm:mt-0 lg:mt-3 lg:h-80 lg:w-80"
+                        loading="lazy"
                     />
                 </div>
                 <div className="flex flex-col mt-1 sm:mt-2 lg:-mt-5 pl-2 sm:pl-3 lg:pl-5">
@@ -30,7 +37,9 @@ export function MetalCard({ logoSrc, logoAlt, title, description, className = ""
             <div className="absolute w-32 h-32 sm:w-40 sm:h-36 lg:w-56 lg:h-48 bg-purple-300/30 blur-[50px] -left-1/2 -top-1/2"></div>
         </div>
     );
-}
+});
+
+export { MetalCard };
 
 export function MetalCardContainer({ children }: { children: React.ReactNode }) {
     return (

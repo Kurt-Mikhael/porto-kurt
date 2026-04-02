@@ -1,21 +1,21 @@
 [
   {
     "id": 1,
-    "imgSrc": "/oskm-2025.png",
+    "imgSrc": "/oskm-2025.webp",
     "imgAlt": "OSKM ITB 2025",
     "description": "OSKM ITB 2025 is the orientation program for new students at ITB, where I contributed as a committee member to help organize and facilitate various activities for the newcomers.",
     "link": "https://oskm.katitb.com"
   },
   {
     "id": 2,
-    "imgSrc": "/nusantara-alert.jpg",
+    "imgSrc": "/nusantara-alert.webp",
     "imgAlt": "Nusantara Alert",
     "description": "Nusantara Alert is a platform that provides real-time information and alerts about natural disasters in Indonesia.",
     "link": "https://github.com/ziprawan/lagiChaos-NusantaraAlert"
   },
   {
     "id": 3,
-    "imgSrc": "/weather-app.png",
+    "imgSrc": "/weather-app.webp",
     "imgAlt": "Weather App",
     "description": "Weather App is a project that provides real-time weather information and forecasts.",
     "link": "https://kurt-mikhael.github.io/"

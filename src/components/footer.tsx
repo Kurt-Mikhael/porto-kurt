@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-800 text-white mt-auto">
+    <footer className="bg-zinc-950 border-t border-zinc-800 text-white w-full">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Left Column - Connect */}

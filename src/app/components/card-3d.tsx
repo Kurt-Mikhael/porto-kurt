@@ -2,31 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
 import projectsData from '@/data/projects.json';
 
-export function Card3D({
-    imgSrc,
-    imgAlt,
-    description,
-    link,
-}: {
+interface Card3DProps {
     imgSrc: string;
     imgAlt: string;
     description: string;
     link: string;
-}) {
+}
+
+const Card3D = memo(function Card3D({
+    imgSrc,
+    imgAlt,
+    description,
+    link,
+}: Card3DProps) {
     return (
         <div className="parent">
-            <div className="card3D" style={{ position: "relative" }}>
+            <div className="card3D" style={{ position: "relative", willChange: "transform" }}>
                 <div className="content-box flex flex-col items-center justify-center w-70 h-100"
-                    style={{ borderRadius:"10px", boxShadow:"0 5px 15px rgba(145, 92, 182, .4)", }}
+                    style={{ borderRadius:"10px", boxShadow:"0 5px 15px rgba(145, 92, 182, .4)" }}
                 >
                     <Image
                         src={imgSrc}
                         alt={imgAlt}
                         width={400}
                         height={300}
-                        className="image -mt-15"  
+                        className="image -mt-15"
+                        loading="lazy"
                     />
                     <p className="card3D-content "
                         style={{textShadow: "0 5px 15px rgba(145, 92, 182, .6)" }}
@@ -45,11 +49,12 @@ export function Card3D({
             </div>
         </div>
     );
-}
+});
 
+export { Card3D };
 export function Card3DContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-8 flex-wrap justify-center items-center p-8 ">
+    <div className="flex gap-4 sm:gap-6 md:gap-8 flex-wrap justify-center items-center p-4 sm:p-6 md:p-8">
       {children}
     </div>
   );

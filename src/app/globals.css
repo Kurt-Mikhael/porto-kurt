@@ -1,58 +1,57 @@
 
-/* Google Fonts import */
-@import url('https://fonts.googleapis.com/css?family=Exo:700');
-@import url('https://fonts.googleapis.com/css?family=Abel');
-
-
-/* Active navbar animation */
-@property --4-x-position {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 20%;
-}
-
-@property --4-y-position {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 80%;
-}
-
-@property --5-x-position {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 80%;
-}
-
-@property --5-y-position {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 20%;
-}
-
+/* Disabled heavy navbar animation for performance */
 .navbar-active {
-  background: radial-gradient(100% 100% at var(--4-x-position) var(--4-y-position), #fcfcfc 0%, transparent),
-              radial-gradient(100% 100% at var(--5-x-position) var(--5-y-position), #808080 0%, transparent),
-              #1b253b;
-  animation-name: main;
-  animation-iteration-count: infinite;
-  animation-duration: 2s;
-  transition-timing-function: ease-in;
-  color: black;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  color: white;
 }
 
-@keyframes main {
-  25% {
-    --4-x-position: 15%;
-    --4-y-position: 15%;
-    --5-x-position: 85%;
-    --5-y-position: 80%;
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Disable hover animations on touch devices for performance */
+  @media (hover: none) {
+    button:hover,
+    a:hover,
+    .group:hover {
+      transform: none !important;
+    }
   }
-  50% {
-    --4-x-position: 80%;
-    --4-y-position: 15%;
-    --5-x-position: 15%;
-    --5-y-position: 85%;
+  
+  /* Optimize animations on mobile */
+  .transition-all,
+  .transition-colors,
+  .transition-transform,
+  .transition-opacity {
+    transition-duration: 150ms;
   }
+  
+  /* Reduce motion for reduced performance impact */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Touch-friendly tap targets */
+button, a, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize images for mobile */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 @import "tailwindcss";
@@ -242,15 +241,39 @@
   border-radius: 15px;
 }
 
-.typewriter h1 {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
-    typing 3.5s steps(70, end),
-    blink-caret .75s step-end infinite;
+/* Professional Typewriter Animation */
+
+.typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  border-right: 3px solid rgba(255, 255, 255, 0.75); /* Thicker, semi-transparent caret */
+  animation:
+    typing 3.5s steps(40, end) forwards,
+    blinkCaret 0.75s step-end infinite;
+  font-family: 'Exo', sans-serif; /* You can keep your font from Google Fonts */
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCaret {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+  50% {
+    border-color: transparent;
+  }
 }
 
 /* The typing effect */
@@ -259,70 +282,6 @@
   to { width: 100% }
 }
 
-.fizzy-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.fizzy-bubble {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.5;
-  background: radial-gradient(circle, #fff 60%, #c94b4b 100%);
-  animation: fizzy-move 5s linear infinite;
-  pointer-events: none;
-}
-
-.fizzy-bubble:nth-child(1) {
-  width: 16px; height: 16px; left: 10%; top: 93%;
-  animation-duration: 3s;
-  animation-delay: 0s;
-}
-.fizzy-bubble:nth-child(2) {
-  width: 10px; height: 10px; left: 70%; top: 93%;
-  animation-duration: 4s;
-  animation-delay: 1s;
-  opacity: 0.7;
-}
-.fizzy-bubble:nth-child(3) {
-  width: 8px; height: 8px; left: 40%; top: 93%;
-  animation-duration: 2.5s;
-  animation-delay: 0.5s;
-}
-.fizzy-bubble:nth-child(4) {
-  width: 12px; height: 12px; left: 80%; top: 93%;
-  animation-duration: 3.5s;
-  animation-delay: 1.2s;
-}
-.fizzy-bubble:nth-child(5) {
-  width: 14px; height: 14px; left: 25%; top: 91%;
-  animation-duration: 6s;
-  animation-delay: 0.7s;
-}
-
-@keyframes fizzy-move {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.4;
-  }
-  70% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-120px) scale(1.2);
-    opacity: 0;
-  }
-}
-
-
-@keyframes ease-in-out {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
 
 .parent {
   width: 300px;

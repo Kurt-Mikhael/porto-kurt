@@ -1,28 +1,39 @@
 'use client';
 
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
+import { memo, useCallback, useRef } from "react";
 
-export default function Navbar() {
-  const scrollToSection = (sectionId: string) => {
+const NavbarContent = memo(function NavbarContent() {
+  const navRef = useRef<HTMLElement>(null);
+
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80; // tinggi navbar + sedikit padding
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
+    if (!element) return;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+    // Get navbar height dynamically
+    const navbarHeight = navRef.current?.offsetHeight || 70;
+    
+    // Calculate position dengan extra padding untuk lebih sesuai
+    const elementRect = element.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const elementTop = elementRect.top + scrollTop;
+    
+    // Offset = navbar height + extra margin (16px) untuk spacing yang lebih bagus
+    const offset = navbarHeight + 16;
+    const targetScroll = elementTop - offset;
+
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-zinc-800">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 border-b border-zinc-800" style={{ backdropFilter: 'blur(4px)' }}>
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-inner">
+          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-inner" style={{ willChange: 'transform' }}>
             K
           </div>
           <span className="text-2xl font-semibold tracking-tighter text-white">Kurt</span>
@@ -66,6 +77,14 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuLink 
                 className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                onClick={() => scrollToSection("tech-stack")}
+              >
+                Tech Stack
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact
@@ -84,4 +103,6 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+});
+
+export default NavbarContent;

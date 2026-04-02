@@ -4,7 +4,8 @@ import TypewriterText from "./components/typewriter-text";
 import { FlipCardContainer, FlipCardList } from "@/app/components/flip-card";
 import Image from 'next/image';
 import { Card3DList } from "./components/card-3d";
-import { MetalCardList } from "./components/metal-card";  
+import { MetalCardList } from "./components/metal-card";
+import { TechStackList } from "./components/tech-stack";
 import { Footer } from "@/components/footer";
 import { useState, useEffect } from "react";
 import { useIntersectionObserver } from "./hooks/hooks";
@@ -16,6 +17,7 @@ export default function Home() {
   const interestsSection = useIntersectionObserver();
   const projectsSection = useIntersectionObserver();
   const experiencesSection = useIntersectionObserver();
+  const techStackSection = useIntersectionObserver();
   const contactSection = useIntersectionObserver();
   
   useEffect(() => {
@@ -28,52 +30,27 @@ export default function Home() {
   
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-zinc-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-          {/* Logo / Nama */}
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center text-white text-xs font-bold tracking-tighter">K</div>
-            <span className="font-semibold text-2xl tracking-tight text-white">Kurt</span>
-          </div>
-
-          {/* Menu Links */}
-          <div className="hidden md:flex items-center gap-9 text-sm font-medium text-zinc-300">
-            <a href="#home" className="hover:text-white transition-colors duration-200">Home</a>
-            <a href="#about" className="hover:text-white transition-colors duration-200">Interests</a>
-            <a href="#projects" className="hover:text-white transition-colors duration-200">Projects</a>
-            <a href="#experiences" className="hover:text-white transition-colors duration-200">Experiences</a>
-            <a href="#contact" className="hover:text-white transition-colors duration-200">Contact</a>
-          </div>
-
-          {/* CTA Button */}
-          <a 
-            href="#contact" 
-            className="px-6 py-2.5 text-sm font-semibold bg-white text-zinc-950 rounded-2xl hover:bg-indigo-500 hover:text-white transition-all duration-300 shadow-md hover:shadow-indigo-500/30"
-          >
-            Get in Touch
-          </a>
-        </div>
-      </nav>
-
       {/* === MAIN CONTENT === */}
       <div 
-        className={`flex flex-col items-center font-sans gap-16 lg:gap-24 pt-24 pb-0 px-6 md:px-12 lg:px-16 overflow-hidden transition-all duration-1000 ease-out ${
+        className={`flex flex-col items-center font-sans gap-12 md:gap-16 lg:gap-24 pt-20 md:pt-24 pb-0 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden min-h-screen ${
           isLoaded 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-10'
         }`}
+        style={{ transition: isLoaded ? 'opacity 0.5s ease-out, transform 0.5s ease-out' : 'none' }}
       >
         {/* HERO SECTION */}
         <section 
           id="home" 
           ref={homeSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center min-h-screen transition-all duration-1000 ease-out ${
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center min-h-screen ${
             homeSection.isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-20'
           }`}
+          style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', willChange: 'opacity, transform' }}
         >
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto py-15">
             <h1 
               className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-2px] leading-none"
               style={{
@@ -98,7 +75,7 @@ export default function Home() {
             <div className="relative flex-shrink-0">
               <div className="absolute -inset-4 bg-gradient-to-br from-indigo-500/20 to-violet-600/20 rounded-[3rem] blur-3xl"></div>
               <Image 
-                src="/foto-porto.jpg" 
+                src="/foto-porto.webp" 
                 alt="Profile Picture" 
                 width={320} 
                 height={320} 
@@ -120,11 +97,12 @@ export default function Home() {
         <section 
           id="about" 
           ref={interestsSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 transition-all duration-1000 ease-out ${
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 ${
             interestsSection.isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
+          style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', willChange: 'opacity, transform' }}
         >
           <TypewriterText 
             text="My Interests" 
@@ -147,11 +125,12 @@ export default function Home() {
         <section 
           id="projects" 
           ref={projectsSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 transition-all duration-1000 ease-out ${
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 ${
             projectsSection.isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
+          style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', willChange: 'opacity, transform' }}
         >
           <TypewriterText 
             text="Featured Projects" 
@@ -172,11 +151,12 @@ export default function Home() {
         <section 
           id="experiences" 
           ref={experiencesSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-10 gap-12 transition-all duration-1000 ease-out ${
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-10 gap-12 ${
             experiencesSection.isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
+          style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', willChange: 'opacity, transform' }}
         >
           <TypewriterText 
             text="Experiences" 
@@ -193,15 +173,42 @@ export default function Home() {
           </div>
         </section>
 
+        {/* TECH STACK SECTION */}
+        <section 
+          id="tech-stack" 
+          ref={techStackSection.ref} 
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 ${
+            techStackSection.isIntersecting 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', willChange: 'opacity, transform' }}
+        >
+          <TypewriterText 
+            text="Tech Stack" 
+            className="text-4xl md:text-5xl font-semibold text-white tracking-tight text-center" 
+            style={{ 
+              background: "linear-gradient(to right, #6366f1, #8b5cf6)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent"
+            }} 
+          />
+          <div className="w-full">
+            <TechStackList />
+          </div>
+        </section>
+
         {/* CONTACT SECTION */}
         <section 
           id="contact" 
           ref={contactSection.ref} 
-          className={`w-full max-w-7xl mx-auto transition-all duration-1000 ease-out ${
+          className={`w-full max-w-7xl mx-auto ${
             contactSection.isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
+          style={{ transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', willChange: 'opacity, transform' }}
         >
           <Footer />
         </section>

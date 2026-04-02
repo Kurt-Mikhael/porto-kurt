@@ -1,0 +1,33 @@
+# Vercel Ignore Configuration
+
+# Development dependencies
+.git
+.gitignore
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Testing
+.test
+.spec
+
+# Documentation
+README.md
+CHANGELOG.md
+docs/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment
+.env.local
+.env.*.local
+.DS_Store
+
+# Source maps in production
+*.map
