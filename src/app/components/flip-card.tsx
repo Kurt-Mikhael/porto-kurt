@@ -1,158 +1,72 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
+import interestsData from '@/data/interests.json';
 
-interface FlipCardProps {
-  frontContent: React.ReactNode;
-  backContent: React.ReactNode;
+interface InterestCardProps {
+  title: string;
+  description: string;
   className?: string;
 }
 
-export function FlipCard({ frontContent, backContent, className = "" }: FlipCardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const handleClick = () => {
-    setIsFlipped(!isFlipped);
-  };
-
+export function FlipCard({ title, description, className = "" }: InterestCardProps) {
   return (
-    <div className={`card-flip-container ${className}`} onClick={handleClick}>
-      <div className={`card-flip-inner ${isFlipped ? 'flipped' : ''}`}>
-        <div className="card-flip-front">
-          {frontContent}
-        </div>
-        <div className="card-flip-back">
-          {backContent}
+    <div
+      className={`group relative w-72 h-96 cursor-default overflow-hidden rounded-3xl 
+                  bg-zinc-900 border border-zinc-700/70 shadow-xl 
+                  transition-all duration-500 hover:scale-[1.04] hover:shadow-2xl hover:-translate-y-3 
+                  ${className}`}
+    >
+      <div className="h-full flex flex-col p-8 relative">
+        
+        {/* Accent line kreatif di atas (muncul lebih kuat saat hover) */}
+        <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent 
+                        scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+
+        {/* Title - besar & bold */}
+        <h2 className="text-3xl font-semibold text-white tracking-[-0.5px] leading-none text-center mt-8 mb-auto 
+                       transition-all duration-500 group-hover:text-indigo-100">
+          {title}
+        </h2>
+
+        {/* Description muncul smooth saat hover */}
+        <p className="text-zinc-400 text-[15.2px] leading-relaxed text-center opacity-0 translate-y-6 
+                     group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+          {description}
+        </p>
+
+        {/* Footer kreatif */}
+        <div className="mt-auto flex items-center justify-center gap-3 text-xs uppercase tracking-[1.5px] font-medium text-zinc-500">
+          <div className="h-px w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
+          EXPLORE
+          <div className="h-px w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
         </div>
       </div>
+
+      {/* Soft creative overlay saat hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent 
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl" />
     </div>
   );
 }
 
-
 export function FlipCardContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-8 flex-wrap justify-center items-center p-8">
+    <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto px-4 py-8">
       {children}
     </div>
   );
 }
 
-
 export function FlipCardList() {
   return (
     <FlipCardContainer>
-      <FlipCard
-        frontContent={
-          <div>
-            <h2 className="text-2xl font-bold mb-4 fizzy-card">Web Development</h2>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-
-          </div>
-        }
-        backContent={
-          <div>
-            <p className='text-left opacity-75'>I have interests in building responsive and user-friendly web applications using modern technologies.</p>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-      />
-      
-      <FlipCard
-        frontContent={
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Data & Machine Learning</h2>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-        backContent={
-          <div>
-            <p className='text-left opacity-75'>I have interests in data analysis and building machine learning models to extract insights from data.</p>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-      />
-      
-      <FlipCard
-        frontContent={
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Problem Solving</h2>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-        backContent={
-          <div>
-            <p className='text-left opacity-75'>I enjoy tackling complex problems and finding efficient solutions through logical thinking and creativity.</p>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-      />
-      <FlipCard
-        frontContent={
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Communication & Teamwork</h2>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-        backContent={
-          <div>
-            <p className='text-left opacity-75'>I believe that effective communication and collaboration are key to successful teamwork and project outcomes.</p>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-      />
-      <FlipCard
-        frontContent={
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Design Thinking & Creativity</h2>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-        backContent={
-          <div>
-            <p className='text-left opacity-75'>I believe that design thinking and creativity are essential for developing innovative solutions and enhancing user experiences.</p>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-            <span className="fizzy-bubble"></span>
-          </div>
-        }
-      />
+      {interestsData.map((item) => (
+        <FlipCard
+          key={item.id}
+          title={item.frontTitle}
+          description={item.backDescription}
+        />
+      ))}
     </FlipCardContainer>
   );
 }

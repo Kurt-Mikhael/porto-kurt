@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "frontTitle": "Web Development",
+    "backDescription": "I have interests in building responsive and user-friendly web applications using modern technologies."
+  },
+  {
+    "id": 2,
+    "frontTitle": "Data & Machine Learning",
+    "backDescription": "I have interests in data analysis and building machine learning models to extract insights from data."
+  },
+  {
+    "id": 3,
+    "frontTitle": "Problem Solving",
+    "backDescription": "I enjoy tackling complex problems and finding efficient solutions through logical thinking and creativity."
+  },
+  {
+    "id": 4,
+    "frontTitle": "Communication & Teamwork",
+    "backDescription": "I believe that effective communication and collaboration are key to successful teamwork and project outcomes."
+  },
+  {
+    "id": 5,
+    "frontTitle": "Design Thinking & Creativity",
+    "backDescription": "I believe that design thinking and creativity are essential for developing innovative solutions and enhancing user experiences."
+  }
+]

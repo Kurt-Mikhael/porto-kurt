@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import projectsData from '@/data/projects.json';
 
 export function Card3D({
     imgSrc,
@@ -57,24 +58,15 @@ export function Card3DContainer({ children }: { children: React.ReactNode }) {
 export function Card3DList() {
     return (
         <Card3DContainer>
-            <Card3D
-                imgSrc="/oskm-2025.png"
-                imgAlt="OSKM ITB 2025"
-                description="OSKM ITB 2025 is the orientation program for new students at ITB, where I contributed as a committee member to help organize and facilitate various activities for the newcomers."
-                link="https://oskm.katitb.com"
-            />
-            <Card3D
-                imgSrc="/nusantara-alert.jpg"
-                imgAlt="Nusantara Alert"
-                description="Nusantara Alert is a platform that provides real-time information and alerts about natural disasters in Indonesia."
-                link="https://github.com/ziprawan/lagiChaos-NusantaraAlert"
-            />
-            <Card3D
-                imgSrc="/weather-app.png"
-                imgAlt="Weather App"
-                description="Weather App is a project that provides real-time weather information and forecasts.."
-                link="https://kurt-mikhael.github.io/"
-            />
+            {projectsData.map((project) => (
+                <Card3D
+                    key={project.id}
+                    imgSrc={project.imgSrc}
+                    imgAlt={project.imgAlt}
+                    description={project.description}
+                    link={project.link}
+                />
+            ))}
         </Card3DContainer>
     );
 }

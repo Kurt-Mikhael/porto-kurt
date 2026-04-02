@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import experiencesData from '@/data/experiences.json';
 
 interface MetalCardProps {
     logoSrc: string;
@@ -43,26 +44,15 @@ export function MetalCardContainer({ children }: { children: React.ReactNode }) 
 export function MetalCardList() {
     return (
         <MetalCardContainer>
-            <MetalCard
-            logoSrc="/steik.png"
-            logoAlt="STEI-K ITB 2024"
-            title="Academic Division Staff BPA STEI-K ITB 2024"
-            description="Academic division staff responsible for educational programs, curriculum development, and student mentoring at STEI-K ITB 2024."
-            />
-            
-            <MetalCard
-            logoSrc="/impact.png"
-            logoAlt="Impact ITB 2024"
-            title="Competition Division Staff Impact 2024"
-            description="Contributed to technical preparation and supervised competition execution, including guidelines development and infrastructure management."
-            />
-            
-            <MetalCard
-            logoSrc="/oskm-logo.png"
-            logoAlt="OSKM ITB 2025"
-            title="Front-End Developer OSKM ITB 2025"
-            description="Implemented responsive user interface for OSKM website with cross-browser compatibility and interactive elements for new ITB students."
-            />
+            {experiencesData.map((experience) => (
+                <MetalCard
+                    key={experience.id}
+                    logoSrc={experience.logoSrc}
+                    logoAlt={experience.logoAlt}
+                    title={experience.title}
+                    description={experience.description}
+                />
+            ))}
         </MetalCardContainer>
     );
 }
