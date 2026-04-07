@@ -10,22 +10,38 @@ const NavbarContent = memo(function NavbarContent() {
     const element = document.getElementById(sectionId);
     if (!element) return;
 
-    // Get navbar height dynamically
-    const navbarHeight = navRef.current?.offsetHeight || 70;
+    // Fixed navbar height (80px based on typical navbar size)
+    const NAVBAR_HEIGHT = 80;
     
-    // Calculate position dengan extra padding untuk lebih sesuai
+    // Calculate position
     const elementRect = element.getBoundingClientRect();
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const elementTop = elementRect.top + scrollTop;
     
-    // Offset = navbar height + extra margin (16px) untuk spacing yang lebih bagus
-    const offset = navbarHeight + 16;
-    const targetScroll = elementTop - offset;
+    // Offset dengan extra margin untuk spacing
+    const targetScroll = elementTop - NAVBAR_HEIGHT - 16;
 
-    window.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth'
-    });
+    // Use requestAnimationFrame untuk smooth scroll yang lebih baik
+    const startScroll = window.scrollY;
+    const difference = targetScroll - startScroll;
+    const duration = 300; // ms
+    let start: number | null = null;
+
+    const easeInOutQuad = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+    const animate = (timestamp: number) => {
+      if (start === null) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = easeInOutQuad(progress);
+
+      window.scrollTo(0, startScroll + difference * ease);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
   }, []);
 
   return (
@@ -44,7 +60,7 @@ const NavbarContent = memo(function NavbarContent() {
           <NavigationMenuList className="flex items-center gap-8 text-sm font-medium text-zinc-300">
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("home")}
               >
                 Home
@@ -52,7 +68,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("about")}
               >
                 Interests
@@ -60,7 +76,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("projects")}
               >
                 Projects
@@ -68,7 +84,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("experiences")}
               >
                 Experiences
@@ -76,7 +92,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("tech-stack")}
               >
                 Tech Stack
@@ -84,7 +100,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white transition-colors cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact
@@ -96,7 +112,7 @@ const NavbarContent = memo(function NavbarContent() {
         {/* CTA Button */}
         <button
           onClick={() => scrollToSection("contact")}
-          className="px-6 py-2.5 bg-white text-zinc-950 rounded-2xl font-semibold text-sm hover:bg-indigo-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-indigo-500/30"
+          className="px-6 py-2.5 bg-white text-zinc-950 rounded-2xl font-semibold text-sm hover:bg-indigo-600 hover:text-white shadow-lg hover:shadow-indigo-500/30"
         >
           Get in Touch
         </button>

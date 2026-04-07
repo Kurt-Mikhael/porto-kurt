@@ -1,5 +1,6 @@
 "use client";
 import React, { memo } from 'react';
+import { useScrollAnimation } from '@/app/hooks/hooks';
 import interestsData from '@/data/interests.json';
 
 interface InterestCardProps {
@@ -9,43 +10,53 @@ interface InterestCardProps {
 }
 
 const FlipCard = memo(function FlipCard({ title, description, className = "" }: InterestCardProps) {
+  const { ref, isVisible, scrollDirection } = useScrollAnimation();
+  
+  // Tentukan animasi berdasarkan visibility dan scroll direction
+  const getAnimationClass = () => {
+    if (isVisible) return 'scroll-fade-in';
+    if (scrollDirection === 'down') return 'scroll-fade-out-up';
+    if (scrollDirection === 'up') return 'scroll-fade-out-down';
+    return 'opacity-100'; // Default: fully visible kalo belum ada scroll info
+  };
+  
   return (
     <div
-      className={`group relative w-full sm:w-80 md:w-72 lg:w-80 h-96 cursor-default overflow-hidden rounded-3xl 
+      ref={ref}
+      className={`group relative w-full sm:w-80 md:w-72 lg:w-80 h-auto sm:h-96 cursor-default overflow-hidden rounded-2xl sm:rounded-3xl 
                   bg-zinc-900 border border-zinc-700/70 shadow-xl 
-                  transition-all duration-500 hover:scale-[1.04] hover:shadow-2xl hover:-translate-y-3 
+                  transition-transform duration-500 hover:scale-[1.04] hover:-translate-y-3 
+                  ${getAnimationClass()}
                   ${className}`}
-      style={{ willChange: "transform" }}
+      style={{ willChange: "auto", minHeight: "380px" }}
     >
-      <div className="h-full flex flex-col p-8 relative">
+      <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 relative">
         
         {/* Accent line kreatif di atas (muncul lebih kuat saat hover) */}
-        <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent 
+        <div className="absolute top-0 left-4 right-4 sm:left-8 sm:right-8 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent 
                         scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
 
         {/* Title - besar & bold */}
-        <h2 className="text-3xl font-semibold text-white tracking-[-0.5px] leading-none text-center mt-8 mb-auto 
-                       transition-all duration-500 group-hover:text-indigo-100">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white tracking-[-0.5px] leading-none text-center mt-4 sm:mt-6 lg:mt-8 mb-auto 
+                       transition-colors duration-500 group-hover:text-indigo-100">
           {title}
         </h2>
 
         {/* Description muncul smooth saat hover */}
-        <p className="text-zinc-400 text-[15.2px] leading-relaxed text-center opacity-0 translate-y-6 
-                     group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+        <p className="text-zinc-400 text-sm sm:text-base leading-relaxed text-center opacity-0 translate-y-6 
+                     group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-500">
           {description}
         </p>
 
         {/* Footer kreatif */}
-        <div className="mt-auto flex items-center justify-center gap-3 text-xs uppercase tracking-[1.5px] font-medium text-zinc-500">
-          <div className="h-px w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
+        <div className="mt-auto flex items-center justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[1.5px] font-medium text-zinc-500">
+          <div className="h-px w-6 sm:w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
           EXPLORE
-          <div className="h-px w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
+          <div className="h-px w-6 sm:w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
         </div>
       </div>
 
-      {/* Soft creative overlay saat hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-violet-500/5 to-transparent 
-                      opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl" />
+      {/* Performance optimized - removed expensive gradient overlay */}
     </div>
   );
 });

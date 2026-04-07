@@ -37,10 +37,12 @@ export default function RootLayout({
       </head>
       <body
         style={{ background: 'linear-gradient(182deg,rgba(9, 0, 31, 1) 0%, rgba(41, 9, 77, 1) 100%)', backgroundAttachment: 'fixed' }}
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       > 
         <Navbar />
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
       </body>
     </html>
   );

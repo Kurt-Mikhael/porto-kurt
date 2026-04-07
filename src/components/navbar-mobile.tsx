@@ -47,13 +47,13 @@ export default function NavbarMobile() {
         {/* Hamburger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 hover:bg-white/5 rounded-lg transition-colors"
+          className="p-2 hover:bg-white/5 rounded-lg"
           aria-label="Toggle menu"
         >
           <div className="flex flex-col gap-1.5">
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-white ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-white ${isOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-white ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </div>
         </button>
       </div>
@@ -68,7 +68,7 @@ export default function NavbarMobile() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="w-full text-left px-4 py-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+              className="w-full text-left px-4 py-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg"
             >
               {item.label}
             </button>

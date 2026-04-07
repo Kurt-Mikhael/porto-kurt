@@ -27,7 +27,10 @@ const nextConfig: NextConfig = {
       "lucide-react",
     ],
   },
-  
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 5,
+  },
   // Logging
   logging: {
     fetches: {

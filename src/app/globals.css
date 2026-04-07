@@ -5,6 +5,182 @@
   color: white;
 }
 
+/* Optimize 3D cards performance */
+.parent {
+  width: 100%;
+  max-width: 280px;
+  padding: 16px;
+}
+
+@media (min-width: 640px) {
+  .parent {
+    max-width: 320px;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .parent {
+    max-width: 360px;
+  }
+}
+
+/* Mobile optimization untuk card 3D - Extra small phones */
+@media (max-width: 360px) {
+  .content-box {
+    padding: 16px 8px 8px 8px !important;
+    min-height: 240px !important;
+  }
+  
+  .content-box .card3D-content {
+    font-size: 11px !important;
+    margin-top: 4px !important;
+  }
+  
+  .content-box .see-more {
+    font-size: 10px !important;
+    padding: 0.4rem 0.6rem !important;
+    margin-top: 6px !important;
+  }
+}
+
+/* Mobile optimization untuk card 3D - Small phones */
+@media (min-width: 361px) and (max-width: 480px) {
+  .content-box {
+    padding: 18px 10px 10px 10px !important;
+    min-height: 260px !important;
+  }
+  
+  .content-box .card3D-content {
+    font-size: 12px !important;
+    margin-top: 6px !important;
+  }
+  
+  .content-box .see-more {
+    font-size: 10px !important;
+    padding: 0.4rem 0.7rem !important;
+    margin-top: 8px !important;
+  }
+}
+
+/* Mobile optimization untuk card 3D - Medium phones */
+@media (min-width: 481px) and (max-width: 640px) {
+  .content-box {
+    padding: 20px 12px 12px 12px !important;
+    min-height: 300px !important;
+  }
+  
+  .content-box .card3D-content {
+    font-size: 12px !important;
+    margin-top: 8px !important;
+  }
+  
+  .content-box .see-more {
+    font-size: 11px !important;
+    padding: 0.5rem 0.8rem !important;
+    margin-top: 10px !important;
+  }
+}
+
+.card3D {
+  padding-top: 1px;
+  background-size: 60px 60px;
+  background-position: 0 0, 0 0;
+  will-change: transform;
+}
+
+.card3D:hover {
+  background-position: -100px 100px, -100px 100px;
+  transform: translateY(-5px) scale(1.02);
+}
+
+.content-box {
+  background: linear-gradient(178deg,rgba(21, 0, 43, 1) 0%, rgba(30, 9, 56, 1) 100%);
+  padding: 30px 15px 15px 15px;
+  min-height: 350px;
+}
+
+@media (min-width: 641px) {
+  .content-box {
+    padding: 40px 20px 20px 20px;
+    min-height: 400px;
+  }
+}
+
+.content-box .card3D-title {
+  display: inline-block;
+  color: white;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.content-box .card3D-title:hover {
+  color: #c4b5fd;
+}
+
+.content-box .card3D-content {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #f2f2f2;
+}
+
+.content-box .card3D-content:hover {
+  color: #e0e7ff;
+}
+
+.content-box .see-more {
+  cursor: pointer;
+  margin-top: 1rem;
+  display: inline-block;
+  font-weight: 900;
+  font-size: 9px;
+  text-transform: uppercase;
+  padding: 0.5rem 0.7rem;
+}
+
+.content-box .see-more:hover {
+  background-color: #f0f0f0;
+}
+
+.content-box .image {
+  max-width: 100%;
+  height: auto;
+}
+
+.content-box .image:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive image sizing untuk mobile */
+@media (max-width: 360px) {
+  .content-box .image {
+    width: 100px !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 480px) {
+  .content-box .image {
+    width: 120px !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
+  .content-box .image {
+    width: 150px !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .content-box .image {
+    width: 220px !important;
+    height: auto !important;
+  }
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
   /* Disable hover animations on touch devices for performance */
@@ -43,16 +219,123 @@ button, a, [role="button"] {
   justify-content: center;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Optimize images for mobile */
 img {
   max-width: 100%;
   height: auto;
 }
+
+/* Smooth Scroll Animations */
+/* Utility classes for scroll animations */
+.scroll-fade-in {
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.26, 0.64, 1) forwards;
+}
+
+.scroll-fade-out-up {
+  animation: fadeOutUp 0.4s ease-in forwards;
+}
+
+.scroll-fade-out-down {
+  animation: fadeOutDown 0.4s ease-in forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Initial state - hidden before animation */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-hidden-down {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* Staggered animations for child elements */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.stagger-item.animate-stagger {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up .stagger-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(n+6) { animation-delay: 0.6s; }
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -248,35 +531,16 @@ img {
   white-space: nowrap;
   overflow: hidden;
   font-variant-numeric: tabular-nums;
-  border-right: 3px solid rgba(255, 255, 255, 0.75); /* Thicker, semi-transparent caret */
+  border-right: 3px solid rgba(255, 255, 255, 0.75);
   animation:
     typing 3.5s steps(40, end) forwards,
     blinkCaret 0.75s step-end infinite;
-  font-family: 'Exo', sans-serif; /* You can keep your font from Google Fonts */
+  font-family: 'Exo', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   color: #e0e0e0;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blinkCaret {
-  0%, 100% {
-    border-color: rgba(255, 255, 255, 0.75);
-  }
-  50% {
-    border-color: transparent;
-  }
-}
-
-/* The typing effect */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
@@ -370,5 +634,5 @@ html {
 
 section {
   scroll-snap-align: start;
-  min-height: 100vh; /* Pastikan setiap section minimal setinggi viewport */
+  min-height: 100vh;
 }

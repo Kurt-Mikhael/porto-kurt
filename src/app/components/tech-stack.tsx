@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { memo } from 'react';
+import { useScrollAnimation } from '@/app/hooks/hooks';
 import techStackData from '@/data/tech-stack.json';
 
 interface TechStackItemProps {
@@ -12,18 +13,30 @@ interface TechStackItemProps {
 }
 
 const TechStackItem = memo(function TechStackItem({ name, logo, category, className = "" }: TechStackItemProps) {
+  const { ref, isVisible, scrollDirection } = useScrollAnimation();
+  
+  // Tentukan animasi berdasarkan visibility dan scroll direction
+  const getAnimationClass = () => {
+    if (isVisible) return 'scroll-fade-in';
+    if (scrollDirection === 'down') return 'scroll-fade-out-up';
+    if (scrollDirection === 'up') return 'scroll-fade-out-down';
+    return 'opacity-100'; // Default: fully visible
+  };
+  
   return (
     <div 
+      ref={ref}
       className={`group relative flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl
                   bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 border border-zinc-700/50
-                  hover:border-indigo-500/50 transition-all duration-300
-                  hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/20
+                  hover:border-indigo-500/50
+                  hover:scale-105
+                  ${getAnimationClass()}
                   ${className}`}
       style={{ willChange: 'transform' }}
     >
       {/* Logo Container */}
       <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-violet-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-violet-500/20 rounded-lg opacity-0 group-hover:opacity-100"></div>
         <Image
           src={logo}
           alt={name}
@@ -43,7 +56,7 @@ const TechStackItem = memo(function TechStackItem({ name, logo, category, classN
       </span>
 
       {/* Hover shine effect */}
-      <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+      <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-10"></div>
     </div>
   );
 });

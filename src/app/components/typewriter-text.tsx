@@ -6,14 +6,20 @@ export default function TypewriterText({
   speed = 35,
   className,
   style,
+  fastSpeed = false,
+  trigger = true,
 }: {
   text: string;
   speed?: number;
   className?: string;
   style?: React.CSSProperties;
+  fastSpeed?: boolean;
+  trigger?: boolean;
 }) {
+  // Gunakan kecepatan lebih cepat jika fastSpeed true (untuk Featured Projects)
+  const actualSpeed = fastSpeed ? 15 : speed;
   const [displayed, setDisplayed] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(trigger);
   const elementRef = useRef<HTMLParagraphElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const indexRef = useRef(0);
@@ -29,29 +35,9 @@ export default function TypewriterText({
   }, [text]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          // Use requestAnimationFrame for more efficient animation
-          setTimeout(() => {
-            setIsVisible(true);
-          }, 900);
-        }
-      },
-      {
-        threshold: 0.5,
-        rootMargin: "0px"
-      }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [isVisible]);
+    // Update isVisible based on trigger prop
+    setIsVisible(trigger);
+  }, [trigger]);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -60,24 +46,18 @@ export default function TypewriterText({
     setDisplayed("");
 
     // Use higher precision timing for smoother animation
-    intervalRef.current = setInterval(animateText, speed);
+    intervalRef.current = setInterval(animateText, actualSpeed);
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [text, speed, isVisible, animateText]);
+  }, [text, actualSpeed, isVisible, animateText]);
 
   return (
     <p ref={elementRef} className={className} style={style}>
       {isVisible ? displayed : ""}
-      <span 
-        className="border-r-2 border-white animate-pulse ml-1 inline-block"
-        style={{ visibility: isVisible ? "visible" : "hidden" }}
-      >
-        &nbsp;
-      </span>
     </p>
   );
 }
