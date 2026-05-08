@@ -8,6 +8,7 @@ import { Card3DList } from "./components/card-3d";
 import { MetalCardList } from "./components/metal-card";
 import { TechStackList } from "./components/tech-stack";
 import { Footer } from "@/components/footer";
+import AmbientBackground from "./components/ambient-background";
 import { useState, useEffect } from "react";
 import { useIntersectionObserver } from "./hooks/hooks";
 
@@ -31,9 +32,10 @@ export default function Home() {
   
   return (
     <>
-      {/* === MAIN CONTENT === */}
+      <AmbientBackground />
+
       <div 
-        className={`flex flex-col items-center font-sans gap-12 md:gap-16 lg:gap-24 pt-20 md:pt-24 pb-0 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden`}
+        className={`relative z-10 flex flex-col items-center font-sans gap-12 md:gap-16 lg:gap-24 pt-20 md:pt-24 pb-0 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden`}
       >
         {/* HERO SECTION */}
         <section 
@@ -45,32 +47,29 @@ export default function Home() {
             <h1 
               className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-2px] leading-none"
             >
-              <HelloAnimation /> <span className="text-slate-300">I'm Kurt</span>
+              <HelloAnimation /> <span className="text-[#f4f4f6]">I&apos;m Kurt</span>
             </h1>
-            <p className="mt-4 text-xl md:text-2xl text-zinc-400 font-medium">
+            <p className="mt-4 text-xl md:text-2xl text-[#cdcdcd] font-medium">
               Informatics Engineering @ ITB
             </p>
-            <p className="mt-2 text-base md:text-lg text-zinc-500 max-w-md mx-auto">
+            <p className="mt-2 text-base md:text-lg text-[#9c9c9d] max-w-md mx-auto">
               Software Engineering • Data Science • Building intelligent digital experiences
             </p>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-16 pt-16 lg:pt-24 w-full">
-            {/* Profile Image */}
             <div className="relative flex-shrink-0">
-              <div className="absolute -inset-4 bg-gradient-to-br from-indigo-500/20 to-violet-600/20 rounded-[3rem] blur-3xl"></div>
+              <div className="absolute -inset-4 bg-[#101111]/50 rounded-[3rem] blur-3xl"></div>
               <Image 
                 src="/foto-porto.webp" 
                 alt="Profile Picture" 
                 width={320} 
                 height={320} 
-                className="rounded-3xl w-64 h-64 lg:w-80 lg:h-80 object-cover shadow-2xl ring-1 ring-white/10 relative z-10"
-                style={{ boxShadow: "0 25px 50px -12px rgb(99 102 241)" }}
+                className="rounded-3xl w-64 h-64 lg:w-80 lg:h-80 object-cover relative z-10 border border-[#242728]"
               />
             </div>
 
-            {/* Bio */}
-            <div className="w-full max-w-2xl lg:max-w-xl px-4 sm:px-0 text-zinc-300 leading-8 text-base sm:text-lg text-center lg:text-left">
+            <div className="w-full max-w-2xl lg:max-w-xl px-4 sm:px-0 text-[#cdcdcd] leading-8 text-base sm:text-lg text-center lg:text-left">
               Welcome! I&apos;m Kurt, an Informatics Engineering student at ITB who is enthusiastic about creating innovative digital solutions. My academic journey is centered around two main pillars: Software Engineering and Data Science. I believe that the combination of robust code and data-driven insights is the key to building products that are both intelligent and impactful.
               <br /><br />
               Within the realm of Software Engineering, my passion lies in front-end development. I enjoy the process of transforming complex ideas into clean, engaging, and accessible user interfaces for everyone.
@@ -78,23 +77,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* INTERESTS / ABOUT SECTION */}
+        {/* INTERESTS SECTION */}
         <section 
           id="about" 
           ref={interestsSection.ref} 
           className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${interestsSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
         >
-          <TypewriterText 
-            text="My Interests" 
-            trigger={interestsSection.isIntersecting}
-            className="text-4xl md:text-5xl font-semibold text-white tracking-tight text-center" 
-            style={{ 
-              background: "linear-gradient(to right, #6366f1, #8b5cf6)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
-            }} 
-          />
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+            My Interests
+          </h2>
           <div className="w-full">
             <FlipCardContainer>
               <FlipCardList />
@@ -108,18 +99,9 @@ export default function Home() {
           ref={projectsSection.ref} 
           className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${projectsSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
         >
-          <TypewriterText 
-            text="Featured Projects" 
-            fastSpeed={true}
-            trigger={projectsSection.isIntersecting}
-            className="text-4xl md:text-5xl font-semibold text-white tracking-tight text-center" 
-            style={{ 
-              background: "linear-gradient(to right, #6366f1, #8b5cf6)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
-            }} 
-          />
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+            Featured Projects
+          </h2>
           <div className="w-full">
             <Card3DList />
           </div>
@@ -131,17 +113,9 @@ export default function Home() {
           ref={experiencesSection.ref} 
           className={`w-full max-w-7xl mx-auto flex flex-col items-center py-10 gap-12 scroll-hidden ${experiencesSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
         >
-          <TypewriterText 
-            text="Experiences" 
-            trigger={experiencesSection.isIntersecting}
-            className="text-4xl md:text-5xl font-semibold text-white tracking-tight text-center" 
-            style={{ 
-              background: "linear-gradient(to right, #6366f1, #8b5cf6)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
-            }} 
-          />
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+            Experiences
+          </h2>
           <div className="w-full">
             <MetalCardList />
           </div>
@@ -153,17 +127,9 @@ export default function Home() {
           ref={techStackSection.ref} 
           className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${techStackSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
         >
-          <TypewriterText 
-            text="Tech Stack" 
-            trigger={techStackSection.isIntersecting}
-            className="text-4xl md:text-5xl font-semibold text-white tracking-tight text-center" 
-            style={{ 
-              background: "linear-gradient(to right, #6366f1, #8b5cf6)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              color: "transparent"
-            }} 
-          />
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+            Tech Stack
+          </h2>
           <div className="w-full">
             <TechStackList />
           </div>
