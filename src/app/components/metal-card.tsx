@@ -10,40 +10,52 @@ interface MetalCardProps {
     logoAlt: string;
     title: string;
     description: string;
+    index: number;
     className?: string;
 }
 
-const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, className = "" }: MetalCardProps) {
+const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, index, className = "" }: MetalCardProps) {
     const { ref, isVisible, scrollDirection } = useScrollAnimation();
     
-    // Tentukan animasi berdasarkan visibility dan scroll direction
     const getAnimationClass = () => {
       if (isVisible) return 'scroll-fade-in';
       if (scrollDirection === 'down') return 'scroll-fade-out-up';
       if (scrollDirection === 'up') return 'scroll-fade-out-down';
-      return 'opacity-100'; // Default: fully visible
+      return 'opacity-100';
     };
+    
+    const isElevated = index % 2 === 1;
     
     return (
         <div 
           ref={ref}
-          className={`relative overflow-hidden rounded-lg sm:rounded-xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 w-full max-w-xs sm:max-w-sm lg:max-w-2xl h-auto sm:h-56 lg:h-60 ${getAnimationClass()} ${className}`}
-          style={{ willChange: "transform", minHeight: "200px" }}
+          className={`relative overflow-hidden rounded-lg w-full max-w-xs sm:max-w-sm lg:max-w-2xl ${getAnimationClass()} ${className}`}
+          style={{ 
+            willChange: "transform", 
+            minHeight: "140px",
+            backgroundColor: isElevated ? '#101111' : '#0d0d0d',
+            border: '1px solid #242728'
+          }}
         >
-            <div className="absolute flex flex-col sm:flex-row items-center justify-center text-white z-[1] opacity-90 rounded-lg sm:rounded-xl inset-0.5 bg-gradient-to-br from-purple-900/80 via-purple-800/80 to-indigo-900/80 p-2 sm:p-4">
-                <div className="mb-2 sm:mb-0 flex-shrink-0">
+            <div className="flex flex-row items-start gap-4 sm:gap-5 p-5 sm:p-6">
+                {/* Logo tile */}
+                <div 
+                  className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-md flex items-center justify-center p-2.5 mt-0.5"
+                  style={{ backgroundColor: '#121212', border: '1px solid #242728' }}
+                >
                     <Image 
                         src={logoSrc}
                         alt={logoAlt}
-                        width={80}
-                        height={80}
-                        className="object-contain w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20"
+                        width={56}
+                        height={56}
+                        className="object-contain w-full h-full"
                         loading="lazy"
                     />
                 </div>
-                <div className="flex flex-col text-center sm:text-left pl-0 sm:pl-3 lg:pl-5">
-                    <h3 className="text-xs sm:text-sm lg:text-base font-semibold mb-1 sm:mb-2">{title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-300 leading-tight line-clamp-2 sm:line-clamp-3 lg:line-clamp-4">{description}</p>
+
+                <div className="flex flex-col flex-1 min-w-0">
+                    <h3 className="text-sm sm:text-base font-medium text-[#f4f4f6] leading-snug mb-1.5">{title}</h3>
+                    <p className="text-xs sm:text-sm text-[#9c9c9d] leading-relaxed line-clamp-3">{description}</p>
                 </div>
             </div>
         </div>
@@ -54,7 +66,7 @@ export { MetalCard };
 
 export function MetalCardContainer({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex gap-4 sm:gap-6 lg:gap-8 flex-wrap justify-center items-center p-4 sm:p-6 lg:p-8">
+        <div className="flex gap-3 sm:gap-4 lg:gap-5 flex-wrap justify-center items-start p-4 sm:p-6 lg:p-8">
             {children}
         </div>
     );
@@ -64,13 +76,14 @@ export function MetalCardContainer({ children }: { children: React.ReactNode }) 
 export function MetalCardList() {
     return (
         <MetalCardContainer>
-            {experiencesData.map((experience) => (
+            {experiencesData.map((experience, index) => (
                 <MetalCard
                     key={experience.id}
                     logoSrc={experience.logoSrc}
                     logoAlt={experience.logoAlt}
                     title={experience.title}
                     description={experience.description}
+                    index={index}
                 />
             ))}
         </MetalCardContainer>
