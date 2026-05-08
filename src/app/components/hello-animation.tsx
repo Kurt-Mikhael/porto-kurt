@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface HelloAnimation {
   text: string;
@@ -39,26 +39,22 @@ export default function HelloAnimation() {
       const currentWord = HELLO_LANGUAGES[state.currentIndex].text;
 
       if (!state.isDeleting) {
-        // Typing
         if (displayedText.length < currentWord.length) {
           setTimeout(() => {
             setDisplayedText(currentWord.slice(0, displayedText.length + 1));
           }, typingSpeed);
         } else {
-          // Selesai typing, tunggu sebelum delete
           setTimeout(() => {
             state.isDeleting = true;
             animationLoop();
           }, delayBeforeDelete);
         }
       } else {
-        // Deleting
         if (displayedText.length > 0) {
           setTimeout(() => {
             setDisplayedText(displayedText.slice(0, -1));
           }, deletingSpeed);
         } else {
-          // Selesai delete, lanjut ke kata berikutnya
           state.isDeleting = false;
           state.currentIndex = (state.currentIndex + 1) % HELLO_LANGUAGES.length;
           setTimeout(() => {
@@ -75,7 +71,7 @@ export default function HelloAnimation() {
     <span
       className="inline-block"
       style={{
-        background: "linear-gradient(to right, #6366f1, #8b5cf6)",
+        background: "linear-gradient(to right, #ff5757, #a1131a)",
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
         color: "transparent",
