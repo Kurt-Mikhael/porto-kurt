@@ -16,7 +16,6 @@ export default function TypewriterText({
   fastSpeed?: boolean;
   trigger?: boolean;
 }) {
-  // Gunakan kecepatan lebih cepat jika fastSpeed true (untuk Featured Projects)
   const actualSpeed = fastSpeed ? 15 : speed;
   const [displayed, setDisplayed] = useState("");
   const [isVisible, setIsVisible] = useState(trigger);
@@ -24,7 +23,6 @@ export default function TypewriterText({
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const indexRef = useRef(0);
 
-  // Optimized animation frame using requestAnimationFrame for smoother animation
   const animateText = useCallback(() => {
     if (indexRef.current < text.length) {
       setDisplayed(text.slice(0, indexRef.current + 1));
@@ -35,7 +33,6 @@ export default function TypewriterText({
   }, [text]);
 
   useEffect(() => {
-    // Update isVisible based on trigger prop
     setIsVisible(trigger);
   }, [trigger]);
 
@@ -45,7 +42,6 @@ export default function TypewriterText({
     indexRef.current = 0;
     setDisplayed("");
 
-    // Use higher precision timing for smoother animation
     intervalRef.current = setInterval(animateText, actualSpeed);
 
     return () => {
@@ -58,6 +54,7 @@ export default function TypewriterText({
   return (
     <p ref={elementRef} className={className} style={style}>
       {isVisible ? displayed : ""}
+      <span className="inline-block w-[3px] h-[1em] bg-[#f4f4f6] ml-1 align-middle animate-pulse" />
     </p>
   );
 }
