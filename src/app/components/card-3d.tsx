@@ -6,69 +6,78 @@ import { memo } from "react";
 import { useScrollAnimation } from "@/app/hooks/hooks";
 import projectsData from '@/data/projects.json';
 
-interface Card3DProps {
+interface ProjectCardProps {
     imgSrc: string;
     imgAlt: string;
     description: string;
     link: string;
+    index: number;
 }
 
-const Card3D = memo(function Card3D({
+const ProjectCard = memo(function ProjectCard({
     imgSrc,
     imgAlt,
     description,
     link,
-}: Card3DProps) {
+    index,
+}: ProjectCardProps) {
     const { ref, isVisible, scrollDirection } = useScrollAnimation();
     
-    // Tentukan animasi berdasarkan visibility dan scroll direction
     const getAnimationClass = () => {
       if (isVisible) return 'scroll-fade-in';
       if (scrollDirection === 'down') return 'scroll-fade-out-up';
       if (scrollDirection === 'up') return 'scroll-fade-out-down';
-      return 'opacity-100'; // Default: fully visible
+      return 'opacity-100';
     };
+    
+    const isElevated = index % 2 === 1;
     
     return (
         <div 
             ref={ref}
-            className={`parent ${getAnimationClass()}`}
+            className={`project-card group ${getAnimationClass()}`}
+            style={{ backgroundColor: isElevated ? '#101111' : '#0d0d0d' }}
         >
-            <div className="card3D" style={{ position: "relative", willChange: "transform" }}>
-                <div className="content-box flex flex-col items-center justify-center w-full"
-                    style={{ borderRadius:"10px", boxShadow:"0 5px 15px rgba(145, 92, 182, .4)" }}
+            {/* Image wrapper with gradient fade */}
+            <div className="project-image-wrapper">
+                <Image
+                    src={imgSrc}
+                    alt={imgAlt}
+                    width={640}
+                    height={360}
+                    className="project-image"
+                    loading="lazy"
+                />
+                <div className="project-image-fade" />
+            </div>
+            
+            {/* Body */}
+            <div className="project-body">
+                <h3 className="project-title">{imgAlt}</h3>
+                <p className="project-desc">{description}</p>
+                
+                <Link 
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-cta"
                 >
-                    <Image
-                        src={imgSrc}
-                        alt={imgAlt}
-                        width={300}
-                        height={225}
-                        className="image -mt-4 sm:-mt-6 lg:-mt-15 w-40 sm:w-64 lg:w-80 h-auto"
-                        loading="lazy"
-                    />
-                    <p className="card3D-content text-xs sm:text-sm"
-                        style={{textShadow: "0 5px 15px rgba(145, 92, 182, .6)" }}
-                    >
-                        {description}
-                    </p>
-                    <Link 
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white see-more mt-4 hover:bg-gray-100"
-                    >
-                        See More
-                    </Link>
-                </div>
+                    <span>View Project</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                    </svg>
+                </Link>
             </div>
         </div>
     );
 });
 
-export { Card3D };
-export function Card3DContainer({ children }: { children: React.ReactNode }) {
+export { ProjectCard };
+
+export function ProjectCardContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex gap-4 sm:gap-6 md:gap-8 flex-wrap justify-center items-center p-4 sm:p-6 md:p-8">
+    <div className="project-grid">
       {children}
     </div>
   );
@@ -76,16 +85,17 @@ export function Card3DContainer({ children }: { children: React.ReactNode }) {
 
 export function Card3DList() {
     return (
-        <Card3DContainer>
-            {projectsData.map((project) => (
-                <Card3D
+        <ProjectCardContainer>
+            {projectsData.map((project, index) => (
+                <ProjectCard
                     key={project.id}
                     imgSrc={project.imgSrc}
                     imgAlt={project.imgAlt}
                     description={project.description}
                     link={project.link}
+                    index={index}
                 />
             ))}
-        </Card3DContainer>
+        </ProjectCardContainer>
     );
 }
