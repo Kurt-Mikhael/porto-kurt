@@ -19,5 +19,19 @@
     "logoAlt": "OSKM ITB 2025",
     "title": "Front-End Developer OSKM ITB 2025",
     "description": "Implemented responsive user interface for OSKM website with cross-browser compatibility and interactive elements for new ITB students."
+  },
+  {
+    "id": 4,
+    "logoSrc": "/satuedu-logo.webp",
+    "logoAlt": "SATEdu ITB 2025",
+    "title": "Vice Chief of Technology of  satuedu 2025",
+    "description": "As Vice Chief of Technology, led technology initiatives to support SatuEdu's mission of providing quality and inclusive education access to underserved communities in Indonesia."
+  },
+  {
+    "id": 5,
+    "logoSrc": "/arkav-logo.webp",
+    "logoAlt": "Arkavidia 10.0",
+    "title": "UI/UX Designer Arkavidia 10.0",
+    "description": "Designing user interfaces and experiences for the Arkavidia 10.0 event, focusing on usability and visual appeal."
   }
 ]
