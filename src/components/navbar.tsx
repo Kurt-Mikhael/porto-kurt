@@ -10,21 +10,15 @@ const NavbarContent = memo(function NavbarContent() {
     const element = document.getElementById(sectionId);
     if (!element) return;
 
-    // Fixed navbar height (80px based on typical navbar size)
     const NAVBAR_HEIGHT = 80;
-    
-    // Calculate position
     const elementRect = element.getBoundingClientRect();
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const elementTop = elementRect.top + scrollTop;
-    
-    // Offset dengan extra margin untuk spacing
     const targetScroll = elementTop - NAVBAR_HEIGHT - 16;
 
-    // Use requestAnimationFrame untuk smooth scroll yang lebih baik
     const startScroll = window.scrollY;
     const difference = targetScroll - startScroll;
-    const duration = 300; // ms
+    const duration = 300;
     let start: number | null = null;
 
     const easeInOutQuad = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -33,9 +27,7 @@ const NavbarContent = memo(function NavbarContent() {
       if (start === null) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
       const ease = easeInOutQuad(progress);
-
       window.scrollTo(0, startScroll + difference * ease);
-
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
@@ -45,22 +37,22 @@ const NavbarContent = memo(function NavbarContent() {
   }, []);
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 border-b border-zinc-800" style={{ backdropFilter: 'blur(4px)' }}>
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-[#07080a] border-b border-[#242728]" style={{ backdropFilter: 'blur(4px)' }}>
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-inner" style={{ willChange: 'transform' }}>
+          <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-xl" style={{ willChange: 'transform' }}>
             K
           </div>
           <span className="text-2xl font-semibold tracking-tighter text-white">Kurt</span>
         </div>
 
-        {/* Menu - menggunakan NavigationMenu shadcn */}
+        {/* Menu */}
         <NavigationMenu className="hidden md:block">
-          <NavigationMenuList className="flex items-center gap-8 text-sm font-medium text-zinc-300">
+          <NavigationMenuList className="flex items-center gap-8 text-sm font-medium text-[#cdcdcd]">
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
                 onClick={() => scrollToSection("home")}
               >
                 Home
@@ -68,7 +60,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
                 onClick={() => scrollToSection("about")}
               >
                 Interests
@@ -76,7 +68,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
                 onClick={() => scrollToSection("projects")}
               >
                 Projects
@@ -84,7 +76,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
                 onClick={() => scrollToSection("experiences")}
               >
                 Experiences
@@ -92,7 +84,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
                 onClick={() => scrollToSection("tech-stack")}
               >
                 Tech Stack
@@ -100,7 +92,7 @@ const NavbarContent = memo(function NavbarContent() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-xl hover:bg-white/5"
+                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
                 onClick={() => scrollToSection("contact")}
               >
                 Contact
@@ -112,7 +104,7 @@ const NavbarContent = memo(function NavbarContent() {
         {/* CTA Button */}
         <button
           onClick={() => scrollToSection("contact")}
-          className="px-6 py-2.5 bg-white text-zinc-950 rounded-2xl font-semibold text-sm hover:bg-indigo-600 hover:text-white shadow-lg hover:shadow-indigo-500/30"
+          className="px-6 py-2.5 bg-white text-black rounded-lg font-semibold text-sm hover:bg-[#e8e8e8]"
         >
           Get in Touch
         </button>
