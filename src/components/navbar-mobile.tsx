@@ -34,11 +34,11 @@ export default function NavbarMobile() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 md:hidden bg-zinc-950/95 border-b border-zinc-800" style={{ backdropFilter: 'blur(4px)' }}>
+    <nav className="fixed top-0 left-0 right-0 z-50 md:hidden bg-[#07080a] border-b border-[#242728]" style={{ backdropFilter: 'blur(4px)' }}>
       <div className="flex items-center justify-between px-4 py-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center text-white font-bold text-sm" style={{ willChange: 'transform' }}>
+          <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-sm" style={{ willChange: 'transform' }}>
             K
           </div>
           <span className="text-lg font-semibold text-white">Kurt</span>
@@ -47,7 +47,7 @@ export default function NavbarMobile() {
         {/* Hamburger Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 hover:bg-white/5 rounded-lg"
+          className="p-2 hover:bg-[#101111] rounded-lg"
           aria-label="Toggle menu"
         >
           <div className="flex flex-col gap-1.5">
@@ -61,14 +61,14 @@ export default function NavbarMobile() {
       {/* Mobile Menu */}
       {isOpen && (
         <div
-          className="bg-gradient-to-b from-zinc-950 to-zinc-900/95 border-b border-zinc-800 py-2 px-4 space-y-1"
+          className="bg-[#07080a] border-b border-[#242728] py-2 px-4 space-y-1"
           style={{ backdropFilter: 'blur(4px)' }}
         >
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="w-full text-left px-4 py-3 text-sm text-zinc-300 hover:text-white hover:bg-white/5 rounded-lg"
+              className="w-full text-left px-4 py-3 text-sm text-[#cdcdcd] hover:text-white hover:bg-[#101111] rounded-lg"
             >
               {item.label}
             </button>
