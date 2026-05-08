@@ -6,57 +6,64 @@ import interestsData from '@/data/interests.json';
 interface InterestCardProps {
   title: string;
   description: string;
+  index: number;
   className?: string;
 }
 
-const FlipCard = memo(function FlipCard({ title, description, className = "" }: InterestCardProps) {
+const FlipCard = memo(function FlipCard({ title, description, index, className = "" }: InterestCardProps) {
   const { ref, isVisible, scrollDirection } = useScrollAnimation();
   
-  // Tentukan animasi berdasarkan visibility dan scroll direction
   const getAnimationClass = () => {
     if (isVisible) return 'scroll-fade-in';
     if (scrollDirection === 'down') return 'scroll-fade-out-up';
     if (scrollDirection === 'up') return 'scroll-fade-out-down';
-    return 'opacity-100'; // Default: fully visible kalo belum ada scroll info
+    return 'opacity-100';
   };
+  
+  // Alternate surface levels for visual rhythm
+  const isElevated = index % 2 === 1;
   
   return (
     <div
       ref={ref}
-      className={`group relative w-full sm:w-80 md:w-72 lg:w-80 h-auto sm:h-96 cursor-default overflow-hidden rounded-2xl sm:rounded-3xl 
-                  bg-zinc-900 border border-zinc-700/70 shadow-xl 
-                  transition-transform duration-500 hover:scale-[1.04] hover:-translate-y-3 
+      className={`group relative w-full sm:w-80 md:w-72 lg:w-80 h-auto cursor-default overflow-hidden rounded-lg 
+                  border border-[#242728]
+                  transition-all duration-300
+                  hover:border-[rgba(255,255,255,0.12)]
                   ${getAnimationClass()}
                   ${className}`}
-      style={{ willChange: "auto", minHeight: "380px" }}
+      style={{ 
+        willChange: "auto", 
+        minHeight: "340px",
+        backgroundColor: isElevated ? '#101111' : '#0d0d0d'
+      }}
     >
-      <div className="h-full flex flex-col p-4 sm:p-6 lg:p-8 relative">
+      <div className="h-full flex flex-col p-6 sm:p-8 relative">
         
-        {/* Accent line kreatif di atas (muncul lebih kuat saat hover) */}
-        <div className="absolute top-0 left-4 right-4 sm:left-8 sm:right-8 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent 
-                        scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+        {/* Index number — subtle typographic detail */}
+        <span className="text-[11px] font-medium text-[#434345] tracking-wider mb-6">
+          {String(index + 1).padStart(2, '0')}
+        </span>
 
-        {/* Title - besar & bold */}
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white tracking-[-0.5px] leading-none text-center mt-4 sm:mt-6 lg:mt-8 mb-auto 
-                       transition-colors duration-500 group-hover:text-indigo-100">
+        {/* Title */}
+        <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-[#f4f4f6] tracking-[-0.02em] leading-tight mb-auto 
+                       transition-colors duration-300">
           {title}
         </h2>
 
-        {/* Description muncul smooth saat hover */}
-        <p className="text-zinc-400 text-sm sm:text-base leading-relaxed text-center opacity-0 translate-y-6 
-                     group-hover:opacity-100 group-hover:translate-y-0 transition-opacity transition-transform duration-500">
+        {/* Description appears on hover */}
+        <p className="text-[#9c9c9d] text-sm sm:text-base leading-relaxed opacity-0 translate-y-4 
+                     group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
           {description}
         </p>
 
-        {/* Footer kreatif */}
-        <div className="mt-auto flex items-center justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[1.5px] font-medium text-zinc-500">
-          <div className="h-px w-6 sm:w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
-          EXPLORE
-          <div className="h-px w-6 sm:w-8 bg-zinc-500 group-hover:bg-indigo-400 transition-colors" />
+        {/* Subtle bottom rule */}
+        <div className="mt-8 pt-4 border-t border-[#242728]">
+          <span className="text-[11px] uppercase tracking-[2px] font-medium text-[#6a6b6c]">
+            Interests
+          </span>
         </div>
       </div>
-
-      {/* Performance optimized - removed expensive gradient overlay */}
     </div>
   );
 });
@@ -64,7 +71,7 @@ const FlipCard = memo(function FlipCard({ title, description, className = "" }: 
 export { FlipCard };
 export function FlipCardContainer({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto px-4 py-4 md:py-8">
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto px-4 py-4 md:py-8">
       {children}
     </div>
   );
@@ -73,11 +80,12 @@ export function FlipCardContainer({ children }: { children: React.ReactNode }) {
 export function FlipCardList() {
   return (
     <FlipCardContainer>
-      {interestsData.map((item) => (
+      {interestsData.map((item, index) => (
         <FlipCard
           key={item.id}
           title={item.frontTitle}
           description={item.backDescription}
+          index={index}
         />
       ))}
     </FlipCardContainer>
