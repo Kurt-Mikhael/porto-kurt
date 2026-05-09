@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
+import NavbarWrapper from "@/app/components/navbar-wrapper";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,7 +31,7 @@ export default function RootLayout({
         style={{ backgroundColor: '#07080a', fontFeatureSettings: '"calt", "kern", "liga", "ss03"' }}
         className={`${inter.variable} font-sans antialiased flex flex-col min-h-screen`}
       > 
-        <Navbar />
+        <NavbarWrapper />
         <div className="flex-1">
           {children}
         </div>
