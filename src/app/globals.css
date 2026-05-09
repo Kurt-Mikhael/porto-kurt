@@ -5,13 +5,130 @@
   color: #ffffff;
 }
 
-/* Project Card Styles */
+/* Experience Card Styles */
+.experience-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .experience-grid {
+    gap: 20px;
+  }
+}
+
+.experience-card {
+  border: 1px solid #242728;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .experience-card {
+    width: 460px;
+    max-width: 460px;
+  }
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.experience-card:active {
+  transform: scale(0.98);
+  transition-duration: 0.1s;
+}
+
+@media (min-width: 768px) {
+  .experience-grid {
+    gap: 20px;
+  }
+}
+
+.experience-card {
+  border: 1px solid #242728;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .experience-card {
+    flex: 0 0 calc(50% - 10px);
+    max-width: 490px;
+  }
+}
+
+.experience-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.experience-card .exp-logo-tile {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #121212;
+  border: 1px solid #242728;
+  transition: border-color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (min-width: 640px) {
+  .experience-card .exp-logo-tile {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.experience-card .exp-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #f4f4f6;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 640px) {
+  .experience-card .exp-title {
+    font-size: 16px;
+  }
+}
+
+.experience-card .exp-desc {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #9c9c9d;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .experience-card .exp-desc {
+    font-size: 14px;
+  }
+}
+
+/* Project Card Grid */
 .project-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   width: 100%;
-  max-width: 1200px;
 }
 
 @media (min-width: 640px) {
@@ -32,7 +149,7 @@
   border: 1px solid #242728;
   border-radius: 10px;
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease;
 }
 
 .project-card:hover {
@@ -40,10 +157,15 @@
   border-color: rgba(255, 255, 255, 0.14);
 }
 
+.project-card:active {
+  transform: scale(0.98);
+  transition-duration: 0.1s;
+}
+
 .project-card .project-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
 }
 
@@ -102,13 +224,18 @@
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.2px;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-card .project-cta:hover {
   background: #ffffff;
   color: #000000;
   border-color: #ffffff;
+}
+
+.project-card .project-cta:active {
+  transform: scale(0.96);
+  transition-duration: 0.1s;
 }
 
 /* Mobile optimizations */
