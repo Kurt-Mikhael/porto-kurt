@@ -35,10 +35,12 @@ const ProjectCard = memo(function ProjectCard({
     return (
         <div 
             ref={ref}
-            className={`project-card group ${getAnimationClass()}`}
-            style={{ backgroundColor: isElevated ? '#101111' : '#0d0d0d' }}
+            className={`project-card group cursor-pointer select-none ${getAnimationClass()}`}
+            style={{ 
+                backgroundColor: isElevated ? '#101111' : '#0d0d0d',
+                transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            }}
         >
-            {/* Image wrapper with gradient fade */}
             <div className="project-image-wrapper">
                 <Image
                     src={imgSrc}
@@ -50,17 +52,15 @@ const ProjectCard = memo(function ProjectCard({
                 />
                 <div className="project-image-fade" />
             </div>
-            
-            {/* Body */}
             <div className="project-body">
                 <h3 className="project-title">{imgAlt}</h3>
                 <p className="project-desc">{description}</p>
-                
                 <Link 
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-cta"
+                    onClick={(e) => e.stopPropagation()}
                 >
                     <span>View Project</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
