@@ -25,23 +25,27 @@ const TechStackItem = memo(function TechStackItem({ name, logo, category, index,
   
   const isElevated = index % 2 === 1;
   
-  return (
+    return (
     <div 
       ref={ref}
       className={`group relative flex flex-col items-center justify-center gap-2.5 p-4 sm:p-5 rounded-lg
                   border border-[#242728]
-                  hover:border-[rgba(255,255,255,0.10)]
-                  transition-all duration-300
+                  hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1
+                  active:scale-[0.98]
+                  transition-all duration-[350ms]
+                  cursor-default select-none
                   ${getAnimationClass()}
                   ${className}`}
       style={{ 
         willChange: 'transform',
-        backgroundColor: isElevated ? '#121212' : '#101111'
+        backgroundColor: isElevated ? '#121212' : '#101111',
+        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
       }}
     >
       {/* Logo tile */}
       <div 
-        className="relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-md p-2"
+        className="relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-md p-2
+                   group-hover:border-[rgba(255,255,255,0.10)] transition-colors duration-[350ms]"
         style={{ backgroundColor: '#0d0d0d', border: '1px solid #242728' }}
       >
         <Image
@@ -49,7 +53,7 @@ const TechStackItem = memo(function TechStackItem({ name, logo, category, index,
           alt={name}
           width={48}
           height={48}
-          className="relative z-10 object-contain w-full h-full"
+          className="relative z-10 object-contain w-full h-full group-hover:scale-105 transition-transform duration-[350ms]"
           loading="lazy"
         />
       </div>
