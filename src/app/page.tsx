@@ -2,9 +2,9 @@
 
 import TypewriterText from "./components/typewriter-text";
 import HelloAnimation from "./components/hello-animation";
-import { FlipCardContainer, FlipCardList } from "@/app/components/flip-card";
 import Image from 'next/image';
 import { Card3DList } from "./components/card-3d";
+import { AchievementCardList } from "./components/achievement-card";
 import { MetalCardList } from "./components/metal-card";
 import { TechStackList } from "./components/tech-stack";
 import { Footer } from "@/components/footer";
@@ -16,8 +16,8 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   
   const homeSection = useIntersectionObserver();
-  const interestsSection = useIntersectionObserver();
   const projectsSection = useIntersectionObserver();
+  const achievementsSection = useIntersectionObserver();
   const experiencesSection = useIntersectionObserver();
   const techStackSection = useIntersectionObserver();
   const contactSection = useIntersectionObserver();
@@ -77,22 +77,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* INTERESTS SECTION */}
-        <section 
-          id="about" 
-          ref={interestsSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${interestsSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
-            My Interests
-          </h2>
-          <div className="w-full">
-            <FlipCardContainer>
-              <FlipCardList />
-            </FlipCardContainer>
-          </div>
-        </section>
-
         {/* PROJECTS SECTION */}
         <section 
           id="projects" 
@@ -104,6 +88,20 @@ export default function Home() {
           </h2>
           <div className="w-full">
             <Card3DList />
+          </div>
+        </section>
+
+        {/* ACHIEVEMENTS SECTION */}
+        <section 
+          id="achievements" 
+          ref={achievementsSection.ref} 
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${achievementsSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+            Achievements
+          </h2>
+          <div className="w-full">
+            <AchievementCardList />
           </div>
         </section>
 
