@@ -28,14 +28,16 @@ const FlipCard = memo(function FlipCard({ title, description, index, className =
       ref={ref}
       className={`group relative w-full sm:w-80 md:w-72 lg:w-80 h-auto cursor-default overflow-hidden rounded-lg 
                   border border-[#242728]
-                  transition-all duration-300
-                  hover:border-[rgba(255,255,255,0.12)]
+                  transition-all duration-[350ms]
+                  hover:border-[rgba(255,255,255,0.14)] hover:-translate-y-1
+                  active:scale-[0.98]
                   ${getAnimationClass()}
                   ${className}`}
       style={{ 
-        willChange: "auto", 
+        willChange: "transform", 
         minHeight: "340px",
-        backgroundColor: isElevated ? '#101111' : '#0d0d0d'
+        backgroundColor: isElevated ? '#101111' : '#0d0d0d',
+        transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
       }}
     >
       <div className="h-full flex flex-col p-6 sm:p-8 relative">
@@ -58,8 +60,8 @@ const FlipCard = memo(function FlipCard({ title, description, index, className =
         </p>
 
         {/* Subtle bottom rule */}
-        <div className="mt-8 pt-4 border-t border-[#242728]">
-          <span className="text-[11px] uppercase tracking-[2px] font-medium text-[#6a6b6c]">
+        <div className="mt-8 pt-4 border-t border-[#242728] group-hover:border-[rgba(255,255,255,0.08)] transition-colors duration-[350ms]">
+          <span className="text-[11px] uppercase tracking-[2px] font-medium text-[#6a6b6c] group-hover:text-[#9c9c9d] transition-colors duration-[350ms]">
             Interests
           </span>
         </div>
