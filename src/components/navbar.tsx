@@ -3,7 +3,11 @@
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { memo, useCallback, useRef } from "react";
 
-const NavbarContent = memo(function NavbarContent() {
+interface NavbarContentProps {
+  activeSection?: string;
+}
+
+const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: NavbarContentProps) {
   const navRef = useRef<HTMLElement>(null);
 
   const scrollToSection = useCallback((sectionId: string) => {
@@ -36,6 +40,15 @@ const NavbarContent = memo(function NavbarContent() {
     requestAnimationFrame(animate);
   }, []);
 
+  const menuItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'achievements', label: 'Achievements' },
+    { id: 'experiences', label: 'Experiences' },
+    { id: 'tech-stack', label: 'Tech Stack' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   return (
     <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-[#07080a] border-b border-[#242728]" style={{ backdropFilter: 'blur(4px)' }}>
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
@@ -50,54 +63,28 @@ const NavbarContent = memo(function NavbarContent() {
         {/* Menu */}
         <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="flex items-center gap-8 text-sm font-medium text-[#cdcdcd]">
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
-                onClick={() => scrollToSection("home")}
-              >
-                Home
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
-                onClick={() => scrollToSection("about")}
-              >
-                Interests
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
-                onClick={() => scrollToSection("projects")}
-              >
-                Projects
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
-                onClick={() => scrollToSection("experiences")}
-              >
-                Experiences
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
-                onClick={() => scrollToSection("tech-stack")}
-              >
-                Tech Stack
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink 
-                className="hover:text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-[#101111]"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+            {menuItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <NavigationMenuItem key={item.id}>
+                  <NavigationMenuLink 
+                    className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-200 ${
+                      isActive 
+                        ? 'text-white' 
+                        : 'hover:text-white'
+                    }`}
+                    style={isActive ? {
+                      background: 'linear-gradient(135deg, rgba(255,87,87,0.18), rgba(161,19,26,0.12))',
+                      border: '1px solid rgba(255,87,87,0.30)',
+                      boxShadow: '0 0 20px rgba(255,87,87,0.12), inset 0 1px 0 rgba(255,87,87,0.10)',
+                    } : undefined}
+                    onClick={() => scrollToSection(item.id)}
+                  >
+                    {item.label}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              );
+            })}
           </NavigationMenuList>
         </NavigationMenu>
 
