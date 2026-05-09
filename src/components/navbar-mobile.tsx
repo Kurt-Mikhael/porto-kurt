@@ -2,7 +2,11 @@
 
 import { useState, useCallback } from 'react';
 
-export default function NavbarMobile() {
+interface NavbarMobileProps {
+  activeSection?: string;
+}
+
+export default function NavbarMobile({ activeSection = 'home' }: NavbarMobileProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = useCallback((sectionId: string) => {
@@ -26,8 +30,8 @@ export default function NavbarMobile() {
 
   const menuItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'Interests' },
     { id: 'projects', label: 'Projects' },
+    { id: 'achievements', label: 'Achievements' },
     { id: 'experiences', label: 'Experiences' },
     { id: 'tech-stack', label: 'Tech Stack' },
     { id: 'contact', label: 'Contact' },
@@ -61,18 +65,30 @@ export default function NavbarMobile() {
       {/* Mobile Menu */}
       {isOpen && (
         <div
-          className="bg-[#07080a] border-b border-[#242728] py-2 px-4 space-y-1"
+          className="bg-[#07080a] border-b border-[#242728] py-3 px-4 flex flex-col items-center gap-1"
           style={{ backdropFilter: 'blur(4px)' }}
         >
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="w-full text-left px-4 py-3 text-sm text-[#cdcdcd] hover:text-white hover:bg-[#101111] rounded-lg"
-            >
-              {item.label}
-            </button>
-          ))}
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm rounded-lg transition-all duration-200 ${
+                  isActive
+                    ? 'text-white'
+                    : 'text-[#cdcdcd] hover:text-white hover:bg-[#101111]'
+                }`}
+                style={isActive ? {
+                  background: 'linear-gradient(135deg, rgba(255,87,87,0.18), rgba(161,19,26,0.12))',
+                  border: '1px solid rgba(255,87,87,0.30)',
+                  boxShadow: '0 0 16px rgba(255,87,87,0.12), inset 0 1px 0 rgba(255,87,87,0.10)',
+                } : undefined}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </div>
       )}
     </nav>
