@@ -68,5 +68,110 @@
     "category": "Programming",
     "logo": "https://cdn.worldvectorlogo.com/logos/java.svg",
     "color": "from-orange-500 to-red-600"
+  },
+  {
+    "id": 11,
+    "name": "Haskell",
+    "category": "Programming",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/haskell/haskell-original.svg",
+    "color": "from-purple-500 to-indigo-700"
+  },
+  {
+    "id": 12,
+    "name": "CSS",
+    "category": "Frontend",
+    "logo": "https://cdn.worldvectorlogo.com/logos/css-3.svg",
+    "color": "from-blue-400 to-blue-600"
+  },
+  {
+    "id": 13,
+    "name": "HTML",
+    "category": "Frontend",
+    "logo": "https://cdn.worldvectorlogo.com/logos/html-1.svg",
+    "color": "from-orange-400 to-red-600"
+  },
+  {
+    "id": 14,
+    "name": "PyTorch",
+    "category": "Machine Learning",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/pytorch/pytorch-original.svg",
+    "color": "from-orange-500 to-red-700"
+  },
+  {
+    "id": 15,
+    "name": "OpenCV",
+    "category": "Machine Learning",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/opencv/opencv-original.svg",
+    "color": "from-green-500 to-teal-700"
+  },
+  {
+    "id": 16,
+    "name": "Hugging Face",
+    "category": "Machine Learning",
+    "logo": "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+    "color": "from-yellow-400 to-orange-600"
+  },
+  {
+    "id": 17,
+    "name": "Scikit-learn",
+    "category": "Machine Learning",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg",
+    "color": "from-orange-400 to-yellow-600"
+  },
+  {
+    "id": 18,
+    "name": "Numpy",
+    "category": "Data Science",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg",
+    "color": "from-blue-400 to-cyan-600"
+  },
+  {
+    "id": 19,
+    "name": "Pandas",
+    "category": "Data Science",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg",
+    "color": "from-blue-600 to-indigo-800"
+  },
+  {
+    "id": 20,
+    "name": "Fast API",
+    "category": "Backend",
+    "logo": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png",
+    "color": "from-green-500 to-emerald-700"
+  },
+  {
+    "id": 21,
+    "name": "Jupyter",
+    "category": "Data Science",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/jupyter/jupyter-original.svg",
+    "color": "from-orange-400 to-orange-600"
+  },
+  {
+    "id": 22,
+    "name": "Supabase",
+    "category": "Backend",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/supabase/supabase-original.svg",
+    "color": "from-green-500 to-emerald-600"
+  },
+  {
+    "id": 23,
+    "name": "Git",
+    "category": "Version Control",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
+    "color": "from-orange-500 to-red-600"
+  },
+  {
+    "id": 24,
+    "name": "Docker",
+    "category": "DevOps",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg",
+    "color": "from-blue-400 to-blue-700"
+  },
+  {
+    "id": 25,
+    "name": "Vercel",
+    "category": "Deployment",
+    "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/vercel/vercel-original.svg",
+    "color": "from-black to-gray-800"
   }
 ]

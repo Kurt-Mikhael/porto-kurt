@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
       "vitejs.dev",
       "www.postgresql.org",
       "raw.githubusercontent.com",
+      "fastapi.tiangolo.com",
+      "huggingface.co",
     ],
   },
   
