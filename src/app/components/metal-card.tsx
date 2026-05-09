@@ -29,33 +29,30 @@ const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description
     return (
         <div 
           ref={ref}
-          className={`relative overflow-hidden rounded-lg w-full max-w-xs sm:max-w-sm lg:max-w-2xl ${getAnimationClass()} ${className}`}
+          className={`experience-card group cursor-default select-none ${getAnimationClass()} ${className}`}
           style={{ 
-            willChange: "transform", 
-            minHeight: "140px",
             backgroundColor: isElevated ? '#101111' : '#0d0d0d',
-            border: '1px solid #242728'
+            transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           }}
         >
             <div className="flex flex-row items-start gap-4 sm:gap-5 p-5 sm:p-6">
                 {/* Logo tile */}
                 <div 
-                  className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-md flex items-center justify-center p-2.5 mt-0.5"
-                  style={{ backgroundColor: '#121212', border: '1px solid #242728' }}
+                  className="exp-logo-tile group-hover:border-[rgba(255,255,255,0.10)] transition-colors duration-[350ms]"
                 >
                     <Image 
                         src={logoSrc}
                         alt={logoAlt}
                         width={56}
                         height={56}
-                        className="object-contain w-full h-full"
+                        className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-[350ms]"
                         loading="lazy"
                     />
                 </div>
 
                 <div className="flex flex-col flex-1 min-w-0">
-                    <h3 className="text-sm sm:text-base font-medium text-[#f4f4f6] leading-snug mb-1.5">{title}</h3>
-                    <p className="text-xs sm:text-sm text-[#9c9c9d] leading-relaxed line-clamp-3">{description}</p>
+                    <h3 className="exp-title">{title}</h3>
+                    <p className="exp-desc">{description}</p>
                 </div>
             </div>
         </div>
@@ -66,12 +63,11 @@ export { MetalCard };
 
 export function MetalCardContainer({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex gap-3 sm:gap-4 lg:gap-5 flex-wrap justify-center items-start p-4 sm:p-6 lg:p-8">
+        <div className="experience-grid">
             {children}
         </div>
     );
 }
-
 
 export function MetalCardList() {
     return (
