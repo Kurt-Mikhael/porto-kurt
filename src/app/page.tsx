@@ -38,13 +38,13 @@ export default function Home() {
         className={`relative z-10 flex flex-col items-center font-sans gap-12 md:gap-16 lg:gap-24 pt-20 md:pt-24 pb-0 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden`}
       >
         {/* HERO SECTION */}
-        <section 
-          id="home" 
-          ref={homeSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center min-h-screen scroll-hidden ${homeSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
+        <section
+          id="home"
+          ref={homeSection.ref}
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center justify-center py-16 md:py-24 lg:py-28 scroll-hidden ${homeSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
         >
-          <div className="text-center max-w-3xl mx-auto py-15">
-            <h1 
+          <div className="text-center max-w-3xl mx-auto">
+            <h1
               className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-2px] leading-none"
             >
               <HelloAnimation /> <span className="text-[#f4f4f6]">I&apos;m Kurt</span>
@@ -57,7 +57,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-16 pt-16 lg:pt-24 w-full">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 mt-12 lg:mt-16 w-full">
             <div className="relative flex-shrink-0">
               <Image
                 src="/foto-porto.webp"
