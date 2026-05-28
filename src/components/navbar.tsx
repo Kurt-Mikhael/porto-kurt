@@ -50,11 +50,11 @@ const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: Na
   ];
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-[#07080a] border-b border-[#242728]" style={{ backdropFilter: 'blur(4px)' }}>
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-[#07080a] border-b border-[#242728]">
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-xl" style={{ willChange: 'transform' }}>
+          <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-xl border border-[#242728]">
             K
           </div>
           <span className="text-2xl font-semibold tracking-tighter text-white">Kurt</span>
@@ -70,14 +70,9 @@ const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: Na
                   <NavigationMenuLink 
                     className={`cursor-pointer px-4 py-2 rounded-lg transition-all duration-200 ${
                       isActive 
-                        ? 'text-white' 
-                        : 'hover:text-white'
+                        ? 'text-white bg-[#101111] border border-[#242728]' 
+                        : 'hover:text-white hover:bg-[#101111]/60'
                     }`}
-                    style={isActive ? {
-                      background: 'linear-gradient(135deg, rgba(255,87,87,0.18), rgba(161,19,26,0.12))',
-                      border: '1px solid rgba(255,87,87,0.30)',
-                      boxShadow: '0 0 20px rgba(255,87,87,0.12), inset 0 1px 0 rgba(255,87,87,0.10)',
-                    } : undefined}
                     onClick={() => scrollToSection(item.id)}
                   >
                     {item.label}
@@ -91,7 +86,7 @@ const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: Na
         {/* CTA Button */}
         <button
           onClick={() => scrollToSection("contact")}
-          className="px-6 py-2.5 bg-white text-black rounded-lg font-semibold text-sm hover:bg-[#e8e8e8]"
+          className="px-6 py-2.5 bg-white text-black rounded-lg font-semibold text-sm hover:bg-[#e8e8e8] transition-colors duration-200"
         >
           Get in Touch
         </button>
