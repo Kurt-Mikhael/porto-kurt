@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 
+/**
+ * Simple intersection observer for section-level fade-in.
+ * Animates once and stays visible.
+ */
 export function useIntersectionObserver(options = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Memoize observer options to prevent unnecessary re-creation
   const observerOptions = useMemo(() => ({
     threshold: 0.1,
     rootMargin: '0px',
@@ -13,11 +16,9 @@ export function useIntersectionObserver(options = {}) {
   }), [options]);
 
   useEffect(() => {
-    // Intersection handler - simple and efficient
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !hasAnimated) {
-          // Direct state update tanpa setTimeout
           setIsIntersecting(true);
           setHasAnimated(true);
         }
@@ -38,16 +39,59 @@ export function useIntersectionObserver(options = {}) {
   return { ref, isIntersecting };
 }
 
-// Hook untuk scroll-triggered animation dengan load out sesuai direction
+/**
+ * Smooth scroll-reveal hook for individual cards/items.
+ * - Animates in once (no jarring fade-out)
+ * - Triggers when element is 60px into viewport (feels more natural)
+ * - Supports staggerDelay for cascading grid animations
+ */
+export function useScrollReveal(staggerDelay = 0) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Apply stagger delay for cascading effect
+          if (staggerDelay > 0) {
+            const timer = setTimeout(() => {
+              setIsRevealed(true);
+            }, staggerDelay);
+            return () => clearTimeout(timer);
+          } else {
+            setIsRevealed(true);
+          }
+        }
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [staggerDelay]);
+
+  return { ref, isRevealed };
+}
+
+// Kept for backward compatibility during transition — will be removed
 export function useScrollAnimation() {
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(true); // Default visible
+  const [isVisible, setIsVisible] = useState(true);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
   const lastScrollY = useRef(0);
   const lastChangeTime = useRef<Record<string, number>>({});
 
   useEffect(() => {
-    // Track scroll direction
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY.current) {
@@ -58,7 +102,6 @@ export function useScrollAnimation() {
       lastScrollY.current = currentScrollY;
     };
 
-    // Simple throttle dengan RAF
     let rafId: number | null = null;
     const handleScrollThrottled = () => {
       if (rafId) return;
@@ -70,24 +113,15 @@ export function useScrollAnimation() {
 
     window.addEventListener('scroll', handleScrollThrottled, { passive: true });
 
-    // Intersection Observer - lebih menenang, less aggressive debounce
     const observer = new IntersectionObserver(
       ([entry]) => {
         const now = Date.now();
         const lastChange = lastChangeTime.current.visibility || 0;
-        
-        // Debounce hanya 150ms - lebih reasonable
         if (now - lastChange < 150) return;
-
-        const shouldBeVisible = entry.isIntersecting;
-        
-        setIsVisible(shouldBeVisible);
+        setIsVisible(entry.isIntersecting);
         lastChangeTime.current.visibility = now;
       },
-      { 
-        threshold: 0.1, // 10% visible - more stable threshold
-        rootMargin: '0px' // No buffer zone
-      }
+      { threshold: 0.1, rootMargin: '0px' }
     );
 
     if (ref.current) {
@@ -95,9 +129,7 @@ export function useScrollAnimation() {
     }
 
     return () => {
-      if (rafId) {
-        cancelAnimationFrame(rafId);
-      }
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', handleScrollThrottled);
       observer.disconnect();
     };
