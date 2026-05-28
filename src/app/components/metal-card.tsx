@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { memo } from 'react';
-import { useScrollAnimation } from '@/app/hooks/hooks';
+import { useScrollReveal } from '@/app/hooks/hooks';
 import experiencesData from '@/data/experiences.json';
 
 interface MetalCardProps {
@@ -15,32 +15,25 @@ interface MetalCardProps {
 }
 
 const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, index, className = "" }: MetalCardProps) {
-    const { ref, isVisible, scrollDirection } = useScrollAnimation();
-    
-    const getAnimationClass = () => {
-      if (isVisible) return 'scroll-fade-in';
-      if (scrollDirection === 'down') return 'scroll-fade-out-up';
-      if (scrollDirection === 'up') return 'scroll-fade-out-down';
-      return 'opacity-100';
-    };
-    
+    const { ref, isRevealed } = useScrollReveal(index * 90);
+
     const isElevated = index % 2 === 1;
-    
+
     return (
-        <div 
+        <div
           ref={ref}
-          className={`experience-card group cursor-default select-none ${getAnimationClass()} ${className}`}
-          style={{ 
+          className={`experience-card group cursor-default select-none ${isRevealed ? 'reveal-visible' : 'reveal-hidden'} ${className}`}
+          style={{
             backgroundColor: isElevated ? '#101111' : '#0d0d0d',
             transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
           }}
         >
             <div className="flex flex-row items-start gap-4 sm:gap-5 p-5 sm:p-6">
                 {/* Logo tile */}
-                <div 
+                <div
                   className="exp-logo-tile group-hover:border-[rgba(255,255,255,0.10)] transition-colors duration-[350ms]"
                 >
-                    <Image 
+                    <Image
                         src={logoSrc}
                         alt={logoAlt}
                         width={56}
