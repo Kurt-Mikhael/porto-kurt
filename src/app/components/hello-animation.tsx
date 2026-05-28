@@ -22,7 +22,7 @@ const HELLO_LANGUAGES: HelloAnimation[] = [
 
 export default function HelloAnimation() {
   const [displayedText, setDisplayedText] = useState("");
-  
+
   const stateRef = useRef({
     currentIndex: 0,
     isDeleting: false,
@@ -68,15 +68,7 @@ export default function HelloAnimation() {
   }, [displayedText]);
 
   return (
-    <span
-      className="inline-block"
-      style={{
-        background: "linear-gradient(to right, #ff5757, #a1131a)",
-        backgroundClip: "text",
-        WebkitBackgroundClip: "text",
-        color: "transparent",
-      }}
-    >
+    <span className="inline-block text-[#f4f4f6]">
       {displayedText}
     </span>
   );
