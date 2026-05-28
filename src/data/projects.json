@@ -15,30 +15,31 @@
   },
   {
     "id": 3,
-    "imgSrc": "/weather-app.webp",
-    "imgAlt": "Weather App",
-    "description": "Weather App is a project that provides real-time weather information and forecasts.",
-    "link": "https://kurt-mikhael.github.io/"
-  },
-  {
-    "id": 4,
     "imgSrc": "/pothole.webp",
     "imgAlt": "Pothole Detection", 
     "description": "Pothole Detection is a project that uses computer vision techniques to identify and locate potholes on roads, aiming to improve road safety and maintenance.",
     "link": "https://github.com/Kurt-Mikhael/Pothole-Detection"
   },
   {
-    "id": 5,
+    "id": 4,
     "imgSrc": "/image-spoofing.webp",
     "imgAlt": "Image Spoofing",
     "description": "Create a model to detect image spoofing using DinoV3 as the backbone, trained on a dataset of real and spoofed images to achieve high accuracy in distinguishing between the two.",
     "link": "https://github.com/laksamada/image-classification/tree/main/findit"
   },
   {
-    "id": 6,
+    "id": 5,
     "imgSrc": "/mesh-voxelizer.webp",
     "imgAlt": "3D Mesh Voxelizer using Octree ",
     "description": "A 3D mesh voxelizer that uses octree data structures to efficiently represent and manipulate 3D models.",
     "link": "https://github.com/Kurt-Mikhael/Mesh-Voxelizer"
+  },
+  {
+    "id": 6,
+    "imgSrc": "/satuedu-chatbot.webp",
+    "imgAlt": "RAG Chatbot",
+    "description": "A retrieval-augmented generation (RAG) chatbot designed to provide accurate and contextually relevant responses about Satedu.",
+    "link": "https://www.satuedu.id/"
   }
+
 ]
