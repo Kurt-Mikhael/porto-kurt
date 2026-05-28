@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { memo } from 'react';
-import { useScrollAnimation } from '@/app/hooks/hooks';
+import { useScrollReveal } from '@/app/hooks/hooks';
 import techStackData from '@/data/tech-stack.json';
 
 interface TechStackItemProps {
@@ -14,19 +14,12 @@ interface TechStackItemProps {
 }
 
 const TechStackItem = memo(function TechStackItem({ name, logo, category, index, className = "" }: TechStackItemProps) {
-  const { ref, isVisible, scrollDirection } = useScrollAnimation();
-  
-  const getAnimationClass = () => {
-    if (isVisible) return 'scroll-fade-in';
-    if (scrollDirection === 'down') return 'scroll-fade-out-up';
-    if (scrollDirection === 'up') return 'scroll-fade-out-down';
-    return 'opacity-100';
-  };
-  
+  const { ref, isRevealed } = useScrollReveal(index * 50);
+
   const isElevated = index % 2 === 1;
-  
+
     return (
-    <div 
+    <div
       ref={ref}
       className={`group relative flex flex-col items-center justify-center gap-2.5 p-4 sm:p-5 rounded-lg
                   border border-[#242728]
@@ -34,16 +27,16 @@ const TechStackItem = memo(function TechStackItem({ name, logo, category, index,
                   active:scale-[0.98]
                   transition-all duration-[350ms]
                   cursor-default select-none
-                  ${getAnimationClass()}
+                  ${isRevealed ? 'reveal-visible' : 'reveal-hidden'}
                   ${className}`}
-      style={{ 
+      style={{
         willChange: 'transform',
         backgroundColor: isElevated ? '#121212' : '#101111',
         transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
       }}
     >
       {/* Logo tile */}
-      <div 
+      <div
         className="relative w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-md p-2
                    group-hover:border-[rgba(255,255,255,0.10)] transition-colors duration-[350ms]"
         style={{ backgroundColor: '#0d0d0d', border: '1px solid #242728' }}
