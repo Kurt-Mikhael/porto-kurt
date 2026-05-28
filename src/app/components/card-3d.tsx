@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
-import { useScrollAnimation } from "@/app/hooks/hooks";
+import { useScrollReveal } from "@/app/hooks/hooks";
 import projectsData from '@/data/projects.json';
 
 interface ProjectCardProps {
@@ -21,22 +21,15 @@ const ProjectCard = memo(function ProjectCard({
     link,
     index,
 }: ProjectCardProps) {
-    const { ref, isVisible, scrollDirection } = useScrollAnimation();
-    
-    const getAnimationClass = () => {
-      if (isVisible) return 'scroll-fade-in';
-      if (scrollDirection === 'down') return 'scroll-fade-out-up';
-      if (scrollDirection === 'up') return 'scroll-fade-out-down';
-      return 'opacity-100';
-    };
-    
+    const { ref, isRevealed } = useScrollReveal(index * 90);
+
     const isElevated = index % 2 === 1;
-    
+
     return (
-        <div 
+        <div
             ref={ref}
-            className={`project-card group cursor-pointer select-none ${getAnimationClass()}`}
-            style={{ 
+            className={`project-card group cursor-pointer select-none ${isRevealed ? 'reveal-visible' : 'reveal-hidden'}`}
+            style={{
                 backgroundColor: isElevated ? '#101111' : '#0d0d0d',
                 transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}
@@ -55,7 +48,7 @@ const ProjectCard = memo(function ProjectCard({
             <div className="project-body">
                 <h3 className="project-title">{imgAlt}</h3>
                 <p className="project-desc">{description}</p>
-                <Link 
+                <Link
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
