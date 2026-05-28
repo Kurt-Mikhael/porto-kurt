@@ -33,5 +33,12 @@
     "logoAlt": "Arkavidia 10.0",
     "title": "UI/UX Designer Arkavidia 10.0",
     "description": "Designing user interfaces and experiences for the Arkavidia 10.0 event, focusing on usability and visual appeal."
+  },
+  {
+    "id": 6,
+    "logoSrc": "/ralat-logo.webp",
+    "logoAlt": "Ralat.ind",
+    "title": "Head of Website",
+    "description": "Building an educational learning platform accessible to the nation's youth"
   }
 ]
