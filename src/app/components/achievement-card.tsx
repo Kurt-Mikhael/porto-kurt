@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo } from "react";
-import { useScrollAnimation } from "@/app/hooks/hooks";
+import { useScrollReveal } from "@/app/hooks/hooks";
 import achievementsData from "@/data/achievements.json";
 
 interface AchievementCardProps {
@@ -22,14 +22,7 @@ const AchievementCard = memo(function AchievementCard({
   index,
   className = "",
 }: AchievementCardProps) {
-  const { ref, isVisible, scrollDirection } = useScrollAnimation();
-
-  const getAnimationClass = () => {
-    if (isVisible) return "scroll-fade-in";
-    if (scrollDirection === "down") return "scroll-fade-out-up";
-    if (scrollDirection === "up") return "scroll-fade-out-down";
-    return "opacity-100";
-  };
+  const { ref, isRevealed } = useScrollReveal(index * 100);
 
   const isElevated = index % 2 === 1;
 
@@ -41,7 +34,7 @@ const AchievementCard = memo(function AchievementCard({
                   transition-all duration-[350ms]
                   hover:border-[rgba(255,255,255,0.14)] hover:-translate-y-1
                   active:scale-[0.98]
-                  ${getAnimationClass()}
+                  ${isRevealed ? 'reveal-visible' : 'reveal-hidden'}
                   ${className}`}
       style={{
         willChange: "transform",
@@ -59,10 +52,8 @@ const AchievementCard = memo(function AchievementCard({
           loading="lazy"
           sizes="(max-width: 768px) 100vw, 512px"
         />
-        {/* Subtle top fade to blend with border */}
-        <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[#07080a]/40 to-transparent pointer-events-none" />
-        {/* Subtle bottom fade for text legibility */}
-        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0d0d0d]/60 to-transparent pointer-events-none" />
+        {/* Subtle overlay for text legibility */}
+        <div className="absolute inset-0 bg-[#07080a]/10 pointer-events-none" />
       </div>
 
       {/* Body */}
