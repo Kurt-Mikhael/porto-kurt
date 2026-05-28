@@ -16,7 +16,7 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
     const elementRect = element.getBoundingClientRect();
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const elementTop = elementRect.top + scrollTop;
-    
+
     const offset = 70;
     const targetScroll = elementTop - offset;
 
@@ -24,7 +24,7 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
       top: targetScroll, 
       behavior: 'smooth'
     });
-    
+
     setIsOpen(false);
   }, []);
 
@@ -38,11 +38,11 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 md:hidden bg-[#07080a] border-b border-[#242728]" style={{ backdropFilter: 'blur(4px)' }}>
+    <nav className="fixed top-0 left-0 right-0 z-50 md:hidden bg-[#07080a] border-b border-[#242728]">
       <div className="flex items-center justify-between px-4 py-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-sm" style={{ willChange: 'transform' }}>
+          <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-sm border border-[#242728]">
             K
           </div>
           <span className="text-lg font-semibold text-white">Kurt</span>
@@ -66,7 +66,6 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
       {isOpen && (
         <div
           className="bg-[#07080a] border-b border-[#242728] py-3 px-4 flex flex-col items-center gap-1"
-          style={{ backdropFilter: 'blur(4px)' }}
         >
           {menuItems.map((item) => {
             const isActive = activeSection === item.id;
@@ -74,16 +73,11 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm rounded-lg transition-all duration-200 ${
+                className={`inline-flex items-center justify-center px-4 py-2.5 text-sm rounded-lg transition-all duration-200 w-full ${
                   isActive
-                    ? 'text-white'
+                    ? 'text-white bg-[#101111] border border-[#242728]'
                     : 'text-[#cdcdcd] hover:text-white hover:bg-[#101111]'
                 }`}
-                style={isActive ? {
-                  background: 'linear-gradient(135deg, rgba(255,87,87,0.18), rgba(161,19,26,0.12))',
-                  border: '1px solid rgba(255,87,87,0.30)',
-                  boxShadow: '0 0 16px rgba(255,87,87,0.12), inset 0 1px 0 rgba(255,87,87,0.10)',
-                } : undefined}
               >
                 {item.label}
               </button>
