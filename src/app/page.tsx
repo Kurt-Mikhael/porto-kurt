@@ -53,19 +53,18 @@ export default function Home() {
               Informatics Engineering @ ITB
             </p>
             <p className="mt-2 text-base md:text-lg text-[#9c9c9d] max-w-md mx-auto">
-              Software Engineering • Data Science • Building intelligent digital experiences
+              Software Engineering • Data Science • AI/ML Enthusiast
             </p>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-16 pt-16 lg:pt-24 w-full">
             <div className="relative flex-shrink-0">
-              <div className="absolute -inset-4 bg-[#101111]/50 rounded-[3rem] blur-3xl"></div>
-              <Image 
-                src="/foto-porto.webp" 
-                alt="Profile Picture" 
-                width={320} 
-                height={320} 
-                className="rounded-3xl w-64 h-64 lg:w-80 lg:h-80 object-cover relative z-10 border border-[#242728]"
+              <Image
+                src="/foto-porto.webp"
+                alt="Profile Picture"
+                width={320}
+                height={320}
+                className="rounded-3xl w-64 h-64 lg:w-80 lg:h-80 object-cover border border-[#242728]"
               />
             </div>
 
