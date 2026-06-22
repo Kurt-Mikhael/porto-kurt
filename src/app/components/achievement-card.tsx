@@ -86,9 +86,6 @@ const AchievementCard = memo(function AchievementCard({
 
         {/* Bottom rule */}
         <div className="mt-2 pt-4 border-t border-[#242728] group-hover:border-[rgba(255,255,255,0.08)] transition-colors duration-[350ms]">
-          <span className="text-[11px] uppercase tracking-[2px] font-medium text-[#6a6b6c] group-hover:text-[#9c9c9d] transition-colors duration-[350ms]">
-            Recognized
-          </span>
         </div>
       </div>
     </div>
