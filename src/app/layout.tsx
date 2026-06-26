@@ -11,14 +11,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://porto-kurt.vercel.app"),
+  metadataBase: new URL("https://info-kurt.vercel.app"),
   title: {
     default: "Kurt Mikhael Purba — Software Engineer & Data Science Portfolio",
     template: "%s | Kurt Mikhael Purba",
   },
   description: "Portfolio of Kurt Mikhael Purba, an Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML. Explore featured projects, research, and achievements.",
   keywords: ["Kurt Mikhael Purba", "kurt portfolio", "ITB informatics", "software engineer Indonesia", "data science student", "AI ML portfolio", "frontend developer", "React Next.js portfolio"],
-  authors: [{ name: "Kurt Mikhael Purba", url: "https://porto-kurt.vercel.app" }],
+  authors: [{ name: "Kurt Mikhael Purba", url: "https://info-kurt.vercel.app" }],
   creator: "Kurt Mikhael Purba",
   publisher: "Kurt Mikhael Purba",
   alternates: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     locale: "en_US",
-    url: "https://porto-kurt.vercel.app",
+    url: "https://info-kurt.vercel.app",
     title: "Kurt Mikhael Purba — Software Engineer & Data Science Portfolio",
     description: "Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML.",
     siteName: "Kurt Mikhael Purba Portfolio",
@@ -86,19 +86,19 @@ export const viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://porto-kurt.vercel.app/#person",
+  "@id": "https://info-kurt.vercel.app/#person",
   name: "Kurt Mikhael Purba",
   givenName: "Kurt Mikhael",
   familyName: "Purba",
   alternateName: "Kurt",
-  url: "https://porto-kurt.vercel.app",
+  url: "https://info-kurt.vercel.app",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://porto-kurt.vercel.app",
+    "@id": "https://info-kurt.vercel.app",
   },
   image: {
     "@type": "ImageObject",
-    url: "https://porto-kurt.vercel.app/foto-porto.webp",
+    url: "https://info-kurt.vercel.app/foto-porto.webp",
     width: 320,
     height: 320,
     caption: "Kurt Mikhael Purba",
@@ -165,18 +165,18 @@ const jsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://porto-kurt.vercel.app/#website",
-  url: "https://porto-kurt.vercel.app",
+  "@id": "https://info-kurt.vercel.app/#website",
+  url: "https://info-kurt.vercel.app",
   name: "Kurt Mikhael Purba Portfolio",
   description: "Official portfolio website of Kurt Mikhael Purba, Informatics Engineering student at ITB.",
   inLanguage: "en-US",
-  publisher: { "@id": "https://porto-kurt.vercel.app/#person" },
-  author: { "@id": "https://porto-kurt.vercel.app/#person" },
+  publisher: { "@id": "https://info-kurt.vercel.app/#person" },
+  author: { "@id": "https://info-kurt.vercel.app/#person" },
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://www.google.com/search?q=site:porto-kurt.vercel.app+{search_term_string}",
+      urlTemplate: "https://www.google.com/search?q=site:info-kurt.vercel.app+{search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -185,14 +185,14 @@ const websiteJsonLd = {
 const profilePageJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  "@id": "https://porto-kurt.vercel.app/#profilepage",
-  url: "https://porto-kurt.vercel.app",
+  "@id": "https://info-kurt.vercel.app/#profilepage",
+  url: "https://info-kurt.vercel.app",
   name: "Kurt Mikhael Purba - Software Engineer Portfolio",
-  isPartOf: { "@id": "https://porto-kurt.vercel.app/#website" },
-  about: { "@id": "https://porto-kurt.vercel.app/#person" },
+  isPartOf: { "@id": "https://info-kurt.vercel.app/#website" },
+  about: { "@id": "https://info-kurt.vercel.app/#person" },
   primaryImageOfPage: {
     "@type": "ImageObject",
-    url: "https://porto-kurt.vercel.app/foto-porto.webp",
+    url: "https://info-kurt.vercel.app/foto-porto.webp",
     width: 320,
     height: 320,
   },

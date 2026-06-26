@@ -18,7 +18,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: ["/foto-porto.webp", "/og-image.png", "/favicon.ico"],
       },
     ],
-    sitemap: "https://porto-kurt.vercel.app/sitemap.xml",
-    host: "https://porto-kurt.vercel.app",
+    sitemap: "https://info-kurt.vercel.app/sitemap.xml",
+    host: "https://info-kurt.vercel.app",
   };
 }
