@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Divide and Conquer Strategy on Facial Image GridSegmentation for Liveness Detection Pre-ProcessingOptimization",
+    "description": "This paper presents a novel approach to enhance the accuracy of liveness detection in facial recognition systems. By employing a divide and conquer strategy on facial image grid segmentation, the proposed method optimizes pre-processing steps, leading to improved detection performance. The study demonstrates significant improvements in both speed and accuracy compared to traditional methods, making it a valuable contribution to the field of biometric security.",
+    "image": "/paper-1.webp",
+    "url": "https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2025-2026/Makalah2026/13524065_Kurt%20Mikhael%20Purba_Divide%20and%20Conquer%20Strategy%20on%20Facial%20Image%20Grid%20Segmentation%20for%20Liveness%20Detection%20Pre-Processing%20Optimization.pdf"
+  },
+  {
+    "id": 2,
+    "title": "Simulasi Pergerakan Manipulator Robotik di Ruang Euclidean dengan Pendekatan Geometri Vektor Menggunakan Algoritma Cyclic Coordinate Descent",
+    "description":"This paper explores the simulation of robotic manipulator movements in Euclidean space using vector geometry approaches. By implementing the Cyclic Coordinate Descent algorithm, the study provides an efficient method for calculating joint angles and positions, enabling precise control of robotic arms. The research highlights the effectiveness of this approach in achieving smooth and accurate manipulator movements, contributing to advancements in robotics and automation.",
+    "image": "/paper-2.webp",
+    "url": "https://informatika.stei.itb.ac.id/~rinaldi.munir/AljabarGeometri/2025-2026/Makalah/Makalah-IF2023-Algeo-2025%20(68).pdf"
+  }
+]

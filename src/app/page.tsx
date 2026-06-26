@@ -5,6 +5,7 @@ import HelloAnimation from "./components/hello-animation";
 import Image from 'next/image';
 import { Card3DList } from "./components/card-3d";
 import { AchievementCardList } from "./components/achievement-card";
+import { ResearchCardList } from "./components/research-card";
 import { MetalCardList } from "./components/metal-card";
 import { TechStackList } from "./components/tech-stack";
 import { Footer } from "@/components/footer";
@@ -18,6 +19,7 @@ export default function Home() {
   const homeSection = useIntersectionObserver();
   const projectsSection = useIntersectionObserver();
   const achievementsSection = useIntersectionObserver();
+  const researchSection = useIntersectionObserver();
   const experiencesSection = useIntersectionObserver();
   const techStackSection = useIntersectionObserver();
   const contactSection = useIntersectionObserver();
@@ -101,6 +103,20 @@ export default function Home() {
           </h2>
           <div className="w-full">
             <AchievementCardList />
+          </div>
+        </section>
+
+        {/* RESEARCH SECTION */}
+        <section 
+          id="research" 
+          ref={researchSection.ref} 
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${researchSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+            Research
+          </h2>
+          <div className="w-full">
+            <ResearchCardList />
           </div>
         </section>
 
