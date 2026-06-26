@@ -70,6 +70,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  verification: {
+    google: "FXK6ilchSm9-2_2rhX2AG66Y06SZ0uBbF9xibF0ZqJ4",
+  },
 };
 
 export const viewport = {
