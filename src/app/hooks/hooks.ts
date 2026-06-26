@@ -52,13 +52,13 @@ export function useScrollReveal(staggerDelay = 0) {
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-
+    let timer: ReturnType<typeof setTimeout> | undefined;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           // Apply stagger delay for cascading effect
           if (staggerDelay > 0) {
-            const timer = setTimeout(() => {
+            timer = setTimeout(() => {
               setIsRevealed(true);
             }, staggerDelay);
             return () => clearTimeout(timer);
