@@ -189,6 +189,7 @@ const profilePageJsonLd = {
   url: "https://info-kurt.vercel.app",
   name: "Kurt Mikhael Purba - Software Engineer Portfolio",
   isPartOf: { "@id": "https://info-kurt.vercel.app/#website" },
+  mainEntity: { "@id": "https://info-kurt.vercel.app/#person" },
   about: { "@id": "https://info-kurt.vercel.app/#person" },
   primaryImageOfPage: {
     "@type": "ImageObject",
