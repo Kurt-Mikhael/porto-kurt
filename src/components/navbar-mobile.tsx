@@ -35,6 +35,7 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
     { id: 'experiences', label: 'Experiences' },
     { id: 'tech-stack', label: 'Tech Stack' },
     { id: 'contact', label: 'Contact' },
+    {id: 'research', label: 'Research'},
   ];
 
   return (

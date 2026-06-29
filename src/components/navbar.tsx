@@ -47,6 +47,7 @@ const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: Na
     { id: 'experiences', label: 'Experiences' },
     { id: 'tech-stack', label: 'Tech Stack' },
     { id: 'contact', label: 'Contact' },
+    {id: 'research', label: 'Research'},
   ];
 
   return (
