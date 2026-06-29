@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 export function Footer() {
   return (
     <footer className="bg-[#07080a] border-t border-[#242728] text-white w-full">

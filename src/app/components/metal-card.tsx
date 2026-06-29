@@ -15,7 +15,7 @@ interface MetalCardProps {
 }
 
 const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, index, className = "" }: MetalCardProps) {
-    const { ref, isRevealed } = useScrollReveal(index * 90);
+    const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 90 });
 
     const isElevated = index % 2 === 1;
 

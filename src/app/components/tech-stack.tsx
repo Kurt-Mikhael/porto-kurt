@@ -14,7 +14,7 @@ interface TechStackItemProps {
 }
 
 const TechStackItem = memo(function TechStackItem({ name, logo, category, index, className = "" }: TechStackItemProps) {
-  const { ref, isRevealed } = useScrollReveal(index * 50);
+  const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 50 });
 
   const isElevated = index % 2 === 1;
 

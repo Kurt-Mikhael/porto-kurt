@@ -21,7 +21,7 @@ const ProjectCard = memo(function ProjectCard({
     link,
     index,
 }: ProjectCardProps) {
-    const { ref, isRevealed } = useScrollReveal(index * 90);
+    const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 90 });
 
     const isElevated = index % 2 === 1;
 

@@ -22,7 +22,7 @@ const AchievementCard = memo(function AchievementCard({
   index,
   className = "",
 }: AchievementCardProps) {
-  const { ref, isRevealed } = useScrollReveal(index * 100);
+  const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 100 });
 
   const isElevated = index % 2 === 1;
 

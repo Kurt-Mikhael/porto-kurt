@@ -1,8 +1,5 @@
-"use client";
-
-import TypewriterText from "./components/typewriter-text";
+import Image from "next/image";
 import HelloAnimation from "./components/hello-animation";
-import Image from 'next/image';
 import { Card3DList } from "./components/card-3d";
 import { AchievementCardList } from "./components/achievement-card";
 import { ResearchCardList } from "./components/research-card";
@@ -10,46 +7,58 @@ import { MetalCardList } from "./components/metal-card";
 import { TechStackList } from "./components/tech-stack";
 import { Footer } from "@/components/footer";
 import AmbientBackground from "./components/ambient-background";
-import { useState, useEffect } from "react";
-import { useIntersectionObserver } from "./hooks/hooks";
+import { useScrollReveal } from "./hooks/hooks";
+
+const SECTION_TITLES = {
+  projects: "Featured Software Engineering & Data Science Projects",
+  achievements: "Awards & Achievements",
+  research: "Research Publications in AI & Machine Learning",
+  experiences: "Professional & Organizational Experience",
+  "tech-stack": "Technologies & Tools I Use",
+} as const;
+
+type SectionId = keyof typeof SECTION_TITLES;
+
+const revealClass = (revealed: boolean) =>
+  revealed ? "animate-fade-in-up" : "scroll-hidden";
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-  const homeSection = useIntersectionObserver();
-  const projectsSection = useIntersectionObserver();
-  const achievementsSection = useIntersectionObserver();
-  const researchSection = useIntersectionObserver();
-  const experiencesSection = useIntersectionObserver();
-  const techStackSection = useIntersectionObserver();
-  const contactSection = useIntersectionObserver();
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
+  const home = useScrollReveal();
+  const projects = useScrollReveal();
+  const achievements = useScrollReveal();
+  const research = useScrollReveal();
+  const experiences = useScrollReveal();
+  const techStack = useScrollReveal();
+  const contact = useScrollReveal();
+
+  const renderedSections: {
+    id: SectionId;
+    ref: React.Ref<HTMLElement>;
+    revealed: boolean;
+    content: React.ReactNode;
+    padding?: string;
+  }[] = [
+    { id: "projects", ref: projects.ref, revealed: projects.isRevealed, content: <Card3DList /> },
+    { id: "achievements", ref: achievements.ref, revealed: achievements.isRevealed, content: <AchievementCardList /> },
+    { id: "research", ref: research.ref, revealed: research.isRevealed, content: <ResearchCardList /> },
+    { id: "experiences", ref: experiences.ref, revealed: experiences.isRevealed, content: <MetalCardList />, padding: "py-10" },
+    { id: "tech-stack", ref: techStack.ref, revealed: techStack.isRevealed, content: <TechStackList /> },
+  ];
+
   return (
     <>
       <AmbientBackground />
 
-      <div 
-        className={`relative z-10 flex flex-col items-center font-sans gap-12 md:gap-16 lg:gap-24 pt-20 md:pt-24 pb-0 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden`}
-      >
-        {/* HERO SECTION */}
+      <div className="relative z-10 flex flex-col items-center font-sans gap-12 md:gap-16 lg:gap-24 pt-20 md:pt-24 pb-0 px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden">
         <section
           id="home"
-          ref={homeSection.ref}
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center justify-center py-16 md:py-24 lg:py-28 scroll-hidden ${homeSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
+          ref={home.ref}
+          className={`w-full max-w-7xl mx-auto flex flex-col items-center justify-center py-16 md:py-24 lg:py-28 ${revealClass(home.isRevealed)}`}
         >
           <div className="text-center max-w-3xl mx-auto">
-            <h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-2px] leading-none"
-            >
-              <HelloAnimation /> <span className="text-[#f4f4f6]">I&apos;m Kurt Mikhael Purba</span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-2px] leading-none">
+              <HelloAnimation />{" "}
+              <span className="text-[#f4f4f6]">I&apos;m Kurt Mikhael Purba</span>
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-[#cdcdcd] font-medium">
               Software Engineer &amp; Data Science Student at ITB
@@ -77,90 +86,44 @@ export default function Home() {
 
             <div className="w-full max-w-2xl lg:max-w-xl px-4 sm:px-0 text-[#cdcdcd] leading-8 text-base sm:text-lg text-center lg:text-left">
               <p>
-                <strong>Kurt Mikhael Purba</strong> is an Informatics Engineering student at <strong>Institut Teknologi Bandung (ITB)</strong> who is enthusiastic about creating innovative digital solutions. His academic journey is centered around two main pillars: <strong>Software Engineering</strong> and <strong>Data Science</strong>.
+                <strong>Kurt Mikhael Purba</strong> is an Informatics Engineering
+                student at <strong>Institut Teknologi Bandung (ITB)</strong> who is
+                enthusiastic about creating innovative digital solutions. His
+                academic journey is centered around two main pillars:{" "}
+                <strong>Software Engineering</strong> and{" "}
+                <strong>Data Science</strong>.
               </p>
               <p className="mt-4">
-                He believes that the combination of robust code and data-driven insights is the key to building products that are both intelligent and impactful. Within the realm of Software Engineering, his passion lies in <strong>front-end development</strong> — transforming complex ideas into clean, engaging, and accessible user interfaces using modern frameworks like <strong>React, Next.js, and TypeScript</strong>.
+                He believes that the combination of robust code and data-driven
+                insights is the key to building products that are both intelligent
+                and impactful. Within the realm of Software Engineering, his
+                passion lies in <strong>front-end development</strong> — transforming
+                complex ideas into clean, engaging, and accessible user interfaces
+                using modern frameworks like{" "}
+                <strong>React, Next.js, and TypeScript</strong>.
               </p>
             </div>
           </div>
         </section>
 
-        {/* PROJECTS SECTION */}
-        <section 
-          id="projects" 
-          ref={projectsSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${projectsSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
-            Featured Software Engineering &amp; Data Science Projects
-          </h2>
-          <div className="w-full">
-            <Card3DList />
-          </div>
-        </section>
+        {renderedSections.map(({ id, ref, revealed, content, padding = "py-16" }) => (
+          <section
+            key={id}
+            id={id}
+            ref={ref}
+            className={`w-full max-w-7xl mx-auto flex flex-col items-center ${padding} gap-12 ${revealClass(revealed)}`}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
+              {SECTION_TITLES[id]}
+            </h2>
+            <div className="w-full">{content}</div>
+          </section>
+        ))}
 
-        {/* ACHIEVEMENTS SECTION */}
-        <section 
-          id="achievements" 
-          ref={achievementsSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${achievementsSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
-            Awards &amp; Achievements
-          </h2>
-          <div className="w-full">
-            <AchievementCardList />
-          </div>
-        </section>
-
-        {/* RESEARCH SECTION */}
-        <section 
-          id="research" 
-          ref={researchSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${researchSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
-            Research Publications in AI &amp; Machine Learning
-          </h2>
-          <div className="w-full">
-            <ResearchCardList />
-          </div>
-        </section>
-
-        {/* EXPERIENCES SECTION */}
-        <section 
-          id="experiences" 
-          ref={experiencesSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-10 gap-12 scroll-hidden ${experiencesSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
-            Professional &amp; Organizational Experience
-          </h2>
-          <div className="w-full">
-            <MetalCardList />
-          </div>
-        </section>
-
-        {/* TECH STACK SECTION */}
-        <section 
-          id="tech-stack" 
-          ref={techStackSection.ref} 
-          className={`w-full max-w-7xl mx-auto flex flex-col items-center py-16 gap-12 scroll-hidden ${techStackSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-semibold text-[#f4f4f6] tracking-[-0.02em]">
-            Technologies &amp; Tools I Use
-          </h2>
-          <div className="w-full">
-            <TechStackList />
-          </div>
-        </section>
-
-        {/* CONTACT SECTION */}
-        <section 
-          id="contact" 
-          ref={contactSection.ref} 
-          className={`w-full max-w-7xl mx-auto scroll-hidden ${contactSection.isIntersecting ? 'animate-fade-in-up' : ''}`}
+        <section
+          id="contact"
+          ref={contact.ref}
+          className={`w-full max-w-7xl mx-auto ${revealClass(contact.isRevealed)}`}
         >
           <Footer />
         </section>

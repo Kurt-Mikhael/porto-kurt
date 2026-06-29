@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "@/app/components/navbar-wrapper";
+import { jsonLdBlocks, siteConfig } from "@/data/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -10,20 +12,30 @@ const inter = Inter({
   preload: true,
 });
 
+const { url: SITE_URL, name: SITE_NAME, handle: SITE_HANDLE, photo: SITE_PHOTO } = siteConfig;
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://info-kurt.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Kurt Mikhael Purba — Software Engineer & Data Science Portfolio",
-    template: "%s | Kurt Mikhael Purba",
+    default: `${SITE_NAME} — Software Engineer & Data Science Portfolio`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "Portfolio of Kurt Mikhael Purba, an Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML. Explore featured projects, research, and achievements.",
-  keywords: ["Kurt Mikhael Purba", "kurt portfolio", "ITB informatics", "software engineer Indonesia", "data science student", "AI ML portfolio", "frontend developer", "React Next.js portfolio"],
-  authors: [{ name: "Kurt Mikhael Purba", url: "https://info-kurt.vercel.app" }],
-  creator: "Kurt Mikhael Purba",
-  publisher: "Kurt Mikhael Purba",
-  alternates: {
-    canonical: "/",
-  },
+  description:
+    "Portfolio of Kurt Mikhael Purba, an Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML. Explore featured projects, research, and achievements.",
+  keywords: [
+    "Kurt Mikhael Purba",
+    "kurt portfolio",
+    "ITB informatics",
+    "software engineer Indonesia",
+    "data science student",
+    "AI ML portfolio",
+    "frontend developer",
+    "React Next.js portfolio",
+  ],
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
@@ -38,37 +50,34 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     locale: "en_US",
-    url: "https://info-kurt.vercel.app",
-    title: "Kurt Mikhael Purba — Software Engineer & Data Science Portfolio",
-    description: "Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML.",
-    siteName: "Kurt Mikhael Purba Portfolio",
+    url: SITE_URL,
+    title: `${SITE_NAME} — Software Engineer & Data Science Portfolio`,
+    description:
+      "Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML.",
+    siteName: `${SITE_NAME} Portfolio`,
     firstName: "Kurt",
     lastName: "Mikhael Purba",
     username: "kurt-mikhael",
     images: [
       {
-        url: "/foto-porto.webp",
+        url: SITE_PHOTO,
         width: 320,
         height: 320,
-        alt: "Kurt Mikhael Purba — Informatics Engineering Student at ITB",
+        alt: `${SITE_NAME} — Informatics Engineering Student at ITB`,
         type: "image/webp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kurt Mikhael Purba — Software Engineer & Data Science Portfolio",
-    description: "Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML.",
-    creator: "@kurt_mikhael",
+    title: `${SITE_NAME} — Software Engineer & Data Science Portfolio`,
+    description:
+      "Informatics Engineering student at ITB specializing in Software Engineering, Data Science, and AI/ML.",
+    creator: `@${SITE_HANDLE}`,
     images: {
-      url: "/foto-porto.webp",
-      alt: "Kurt Mikhael Purba — Informatics Engineering Student at ITB",
+      url: SITE_PHOTO,
+      alt: `${SITE_NAME} — Informatics Engineering Student at ITB`,
     },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
   },
   verification: {
     google: "FXK6ilchSm9-2_2rhX2AG66Y06SZ0uBbF9xibF0ZqJ4",
@@ -83,123 +92,6 @@ export const viewport = {
   colorScheme: "dark",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://info-kurt.vercel.app/#person",
-  name: "Kurt Mikhael Purba",
-  givenName: "Kurt Mikhael",
-  familyName: "Purba",
-  alternateName: "Kurt",
-  url: "https://info-kurt.vercel.app",
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": "https://info-kurt.vercel.app",
-  },
-  image: {
-    "@type": "ImageObject",
-    url: "https://info-kurt.vercel.app/foto-porto.webp",
-    width: 320,
-    height: 320,
-    caption: "Kurt Mikhael Purba",
-  },
-  jobTitle: "Software Engineer & Data Science Enthusiast",
-  description: "Informatics Engineering student at Institut Teknologi Bandung specializing in Software Engineering, Data Science, and AI/ML.",
-  nationality: {
-    "@type": "Country",
-    name: "Indonesia",
-  },
-  homeLocation: {
-    "@type": "Place",
-    name: "Bandung, Indonesia",
-  },
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Institut Teknologi Bandung",
-    sameAs: "https://www.itb.ac.id",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Bandung",
-      addressCountry: "ID",
-    },
-  },
-  knowsAbout: [
-    "Software Engineering",
-    "Data Science",
-    "Machine Learning",
-    "Artificial Intelligence",
-    "Frontend Development",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Python",
-    "FastAPI",
-    "PostgreSQL",
-    "Computer Vision",
-    "Deep Learning",
-    "PyTorch",
-  ],
-  hasOccupation: {
-    "@type": "Occupation",
-    name: "Software Engineer",
-    occupationLocation: {
-      "@type": "Country",
-      name: "Indonesia",
-    },
-    skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Python",
-      "Machine Learning",
-      "Data Science",
-    ],
-  },
-  sameAs: [
-    "https://github.com/kurt-mikhael",
-    "https://linkedin.com/in/kurt-mikhael-purba",
-    "https://instagram.com/kurt_mikhael",
-  ],
-};
-
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://info-kurt.vercel.app/#website",
-  url: "https://info-kurt.vercel.app",
-  name: "Kurt Mikhael Purba Portfolio",
-  description: "Official portfolio website of Kurt Mikhael Purba, Informatics Engineering student at ITB.",
-  inLanguage: "en-US",
-  publisher: { "@id": "https://info-kurt.vercel.app/#person" },
-  author: { "@id": "https://info-kurt.vercel.app/#person" },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://www.google.com/search?q=site:info-kurt.vercel.app+{search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
-};
-
-const profilePageJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "@id": "https://info-kurt.vercel.app/#profilepage",
-  url: "https://info-kurt.vercel.app",
-  name: "Kurt Mikhael Purba - Software Engineer Portfolio",
-  isPartOf: { "@id": "https://info-kurt.vercel.app/#website" },
-  mainEntity: { "@id": "https://info-kurt.vercel.app/#person" },
-  about: { "@id": "https://info-kurt.vercel.app/#person" },
-  primaryImageOfPage: {
-    "@type": "ImageObject",
-    url: "https://info-kurt.vercel.app/foto-porto.webp",
-    width: 320,
-    height: 320,
-  },
-  inLanguage: "en-US",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -207,31 +99,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="min-h-full scroll-smooth">
-      <head>
-        <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https://cdn.worldvectorlogo.com https://raw.githubusercontent.com https://vitejs.dev https://www.postgresql.org https://fastapi.tiangolo.com https://huggingface.co; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
-        />
-      </head>
       <body
-        style={{ backgroundColor: '#07080a', fontFeatureSettings: '"calt", "kern", "liga", "ss03"' }}
+        style={{
+          backgroundColor: "#07080a",
+          fontFeatureSettings: '"calt", "kern", "liga", "ss03"',
+        }}
         className={`${inter.variable} font-sans antialiased flex flex-col min-h-screen`}
-      > 
+      >
         <NavbarWrapper />
-        <div className="flex-1">
-          {children}
-        </div>
+        <div className="flex-1">{children}</div>
+        {jsonLdBlocks.map((data, i) => (
+          <Script
+            key={i}
+            id={`jsonld-${i}`}
+            type="application/ld+json"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+          />
+        ))}
       </body>
     </html>
   );
