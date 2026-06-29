@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import NavbarContent from '@/components/navbar';
 import NavbarMobile from '@/components/navbar-mobile';
 
-const SECTIONS = ['home', 'projects', 'achievements', 'experiences', 'tech-stack', 'contact'];
+const SECTIONS = ['home', 'projects', 'achievements', 'research','experiences', 'tech-stack', 'contact'];
 const NAVBAR_HEIGHT = 80;
 
 export default function NavbarWrapper() {
