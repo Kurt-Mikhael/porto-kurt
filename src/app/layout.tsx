@@ -17,7 +17,7 @@ const { url: SITE_URL, name: SITE_NAME, handle: SITE_HANDLE, photo: SITE_PHOTO }
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Software Engineer & Data Science Portfolio`,
+    default: `${SITE_NAME} — Portfolio`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
