@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import HelloAnimation from "./components/hello-animation";
 import { Card3DList } from "./components/card-3d";
