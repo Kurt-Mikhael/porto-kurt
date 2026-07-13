@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://info-kurt.vercel.app";
+  const baseUrl = siteConfig.url;
   const now = new Date();
 
   return [
