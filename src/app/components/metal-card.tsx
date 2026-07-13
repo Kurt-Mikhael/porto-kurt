@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { memo } from 'react';
-import { useScrollReveal } from '@/app/hooks/hooks';
+import { useScrollReveal, useColumnCount } from '@/app/hooks/hooks';
 import experiencesData from '@/data/experiences.json';
 
 interface MetalCardProps {
@@ -11,11 +11,12 @@ interface MetalCardProps {
     title: string;
     description: string;
     index: number;
+    rowIndex: number;
     className?: string;
 }
 
-const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, index, className = "" }: MetalCardProps) {
-    const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 90 });
+const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description, index, rowIndex, className = "" }: MetalCardProps) {
+    const { ref, isRevealed } = useScrollReveal({ staggerDelay: rowIndex * 120 });
 
     const isElevated = index % 2 === 1;
 
@@ -63,18 +64,24 @@ export function MetalCardContainer({ children }: { children: React.ReactNode }) 
 }
 
 export function MetalCardList() {
+    const cols = useColumnCount([{ minWidth: 768, cols: 2 }]);
+
     return (
         <MetalCardContainer>
-            {experiencesData.map((experience, index) => (
-                <MetalCard
-                    key={experience.id}
-                    logoSrc={experience.logoSrc}
-                    logoAlt={experience.logoAlt}
-                    title={experience.title}
-                    description={experience.description}
-                    index={index}
-                />
-            ))}
+            {experiencesData.map((experience, index) => {
+                const rowIndex = Math.floor(index / cols);
+                return (
+                    <MetalCard
+                        key={experience.id}
+                        logoSrc={experience.logoSrc}
+                        logoAlt={experience.logoAlt}
+                        title={experience.title}
+                        description={experience.description}
+                        index={index}
+                        rowIndex={rowIndex}
+                    />
+                );
+            })}
         </MetalCardContainer>
     );
 }
