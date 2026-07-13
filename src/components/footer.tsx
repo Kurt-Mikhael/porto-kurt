@@ -61,7 +61,6 @@ export function Footer() {
 
         {/* Divider + Copyright */}
         <div className="border-t border-[#242728] mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-[#9c9c9d]">
-          <p>© {new Date().getFullYear()} Kurt Mikhael Purba. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
