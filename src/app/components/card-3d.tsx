@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
-import { useScrollReveal } from "@/app/hooks/hooks";
+import { useScrollReveal, useColumnCount } from "@/app/hooks/hooks";
 import projectsData from '@/data/projects.json';
 
 interface ProjectCardProps {
@@ -12,6 +12,7 @@ interface ProjectCardProps {
     description: string;
     link: string;
     index: number;
+    rowIndex: number;
 }
 
 const ProjectCard = memo(function ProjectCard({
@@ -20,8 +21,9 @@ const ProjectCard = memo(function ProjectCard({
     description,
     link,
     index,
+    rowIndex,
 }: ProjectCardProps) {
-    const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 90 });
+    const { ref, isRevealed } = useScrollReveal({ staggerDelay: rowIndex * 220 });
 
     const isElevated = index % 2 === 1;
 
@@ -77,18 +79,24 @@ export function ProjectCardContainer({ children }: { children: React.ReactNode }
 }
 
 export function Card3DList() {
+    const cols = useColumnCount();
+
     return (
         <ProjectCardContainer>
-            {projectsData.map((project, index) => (
-                <ProjectCard
-                    key={project.id}
-                    imgSrc={project.imgSrc}
-                    imgAlt={project.imgAlt}
-                    description={project.description}
-                    link={project.link}
-                    index={index}
-                />
-            ))}
+            {projectsData.map((project, index) => {
+                const rowIndex = Math.floor(index / cols);
+                return (
+                    <ProjectCard
+                        key={project.id}
+                        imgSrc={project.imgSrc}
+                        imgAlt={project.imgAlt}
+                        description={project.description}
+                        link={project.link}
+                        index={index}
+                        rowIndex={rowIndex}
+                    />
+                );
+            })}
         </ProjectCardContainer>
     );
 }
