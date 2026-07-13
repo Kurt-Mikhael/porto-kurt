@@ -1,4 +1,4 @@
-const SITE_URL = "https://info-kurt.vercel.app";
+const SITE_URL = "https://kurtmikhael.com";
 
 export const siteConfig = {
   url: SITE_URL,
