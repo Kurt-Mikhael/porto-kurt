@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { memo } from "react";
-import { useScrollReveal } from "@/app/hooks/hooks";
+import { useScrollReveal, useColumnCount } from "@/app/hooks/hooks";
 import researchData from "@/data/research.json";
 
 interface ResearchCardProps {
@@ -11,6 +11,7 @@ interface ResearchCardProps {
   image: string;
   url: string;
   index: number;
+  rowIndex: number;
   className?: string;
 }
 
@@ -20,9 +21,10 @@ const ResearchCard = memo(function ResearchCard({
   image,
   url,
   index,
+  rowIndex,
   className = "",
 }: ResearchCardProps) {
-  const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 100 });
+  const { ref, isRevealed } = useScrollReveal({ staggerDelay: rowIndex * 120 });
 
   const isElevated = index % 2 === 1;
 
@@ -126,19 +128,25 @@ export function ResearchCardContainer({
 }
 
 export function ResearchCardList() {
+  const cols = useColumnCount([{ minWidth: 1024, cols: 2 }]);
+
   return (
     <ResearchCardContainer>
       <div className="flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6">
-        {researchData.map((item, index) => (
-          <ResearchCard
-            key={item.id}
-            title={item.title}
-            description={item.description}
-            image={item.image}
-            url={item.url}
-            index={index}
-          />
-        ))}
+        {researchData.map((item, index) => {
+          const rowIndex = Math.floor(index / cols);
+          return (
+            <ResearchCard
+              key={item.id}
+              title={item.title}
+              description={item.description}
+              image={item.image}
+              url={item.url}
+              index={index}
+              rowIndex={rowIndex}
+            />
+          );
+        })}
       </div>
     </ResearchCardContainer>
   );
