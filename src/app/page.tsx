@@ -63,7 +63,7 @@ export default function Home() {
               <span className="text-[#f4f4f6]">I&apos;m Kurt Mikhael Purba</span>
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-[#cdcdcd] font-medium">
-              Software Engineer &amp; Data Science Student at ITB
+              Computer Science Student at ITB
             </p>
             <p className="mt-2 text-base md:text-lg text-[#9c9c9d] max-w-md mx-auto">
               Frontend Developer • Machine Learning • AI/ML Enthusiast
@@ -88,18 +88,18 @@ export default function Home() {
 
             <div className="w-full max-w-2xl lg:max-w-xl px-4 sm:px-0 text-[#cdcdcd] leading-8 text-base sm:text-lg text-center lg:text-left">
               <p>
-                <strong>Kurt Mikhael Purba</strong> is an Informatics Engineering
-                student at <strong>Institut Teknologi Bandung (ITB)</strong> who is
-                enthusiastic about creating innovative digital solutions. His
-                academic journey is centered around two main pillars:{" "}
+                I&apos;m <strong>Kurt Mikhael Purba</strong>, an Informatics Engineering
+                student at <strong>Institut Teknologi Bandung (ITB)</strong> with a
+                passion for creating innovative digital solutions. My academic
+                journey is centered around two main pillars:{" "}
                 <strong>Software Engineering</strong> and{" "}
                 <strong>Data Science</strong>.
               </p>
               <p className="mt-4">
-                He believes that the combination of robust code and data-driven
+                I believe that the combination of robust code and data-driven
                 insights is the key to building products that are both intelligent
-                and impactful. Within the realm of Software Engineering, his
-                passion lies in <strong>front-end development</strong> — transforming
+                and impactful. Within the realm of Software Engineering, my passion
+                lies in <strong>front-end development</strong> — transforming
                 complex ideas into clean, engaging, and accessible user interfaces
                 using modern frameworks like{" "}
                 <strong>React, Next.js, and TypeScript</strong>.
