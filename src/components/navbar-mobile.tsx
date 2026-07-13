@@ -4,9 +4,10 @@ import { useState, useCallback } from 'react';
 
 interface NavbarMobileProps {
   activeSection?: string;
+  isScrolled?: boolean;
 }
 
-export default function NavbarMobile({ activeSection = 'home' }: NavbarMobileProps) {
+export default function NavbarMobile({ activeSection = 'home', isScrolled = false }: NavbarMobileProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = useCallback((sectionId: string) => {
@@ -39,14 +40,26 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 md:hidden bg-[#07080a] border-b border-[#242728]">
-      <div className="flex items-center justify-between px-4 py-4">
+    <div
+      className={`fixed top-0 left-0 right-0 z-50 md:hidden transition-[padding] duration-300 ease-out ${
+        isScrolled ? 'pt-2 px-2' : 'pt-0 px-0'
+      }`}
+    >
+      <nav
+        className={`mx-auto flex items-center justify-between transition-all duration-300 ease-out ${
+          isScrolled
+            ? 'max-w-3xl py-2.5 px-4 bg-[#07080a]/70 backdrop-blur-xl border border-[#242728] rounded-2xl shadow-lg shadow-black/30'
+            : 'max-w-[2000px] py-4 px-4 bg-[#07080a] border-b border-[#242728] rounded-none'
+        }`}
+      >
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-sm border border-[#242728]">
             K
           </div>
-          <span className="text-lg font-semibold text-white">Kurt</span>
+          <span className={`font-semibold text-white transition-all duration-300 ease-out ${
+            isScrolled ? 'text-base' : 'text-lg'
+          }`}>Kurt</span>
         </div>
 
         {/* Hamburger Button */}
@@ -61,12 +74,16 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
             <span className={`block w-5 h-0.5 bg-white ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </div>
         </button>
-      </div>
+      </nav>
 
       {/* Mobile Menu */}
       {isOpen && (
         <div
-          className="bg-[#07080a] border-b border-[#242728] py-3 px-4 flex flex-col items-center gap-1"
+          className={`mx-auto flex flex-col items-center gap-1 transition-all duration-300 ease-out ${
+            isScrolled
+              ? 'max-w-3xl bg-[#07080a]/70 backdrop-blur-xl border-x border-b border-[#242728] rounded-b-2xl py-3 px-4'
+              : 'max-w-[2000px] bg-[#07080a] border-b border-[#242728] py-3 px-4'
+          }`}
         >
           {menuItems.map((item) => {
             const isActive = activeSection === item.id;
@@ -86,6 +103,6 @@ export default function NavbarMobile({ activeSection = 'home' }: NavbarMobilePro
           })}
         </div>
       )}
-    </nav>
+    </div>
   );
 }
