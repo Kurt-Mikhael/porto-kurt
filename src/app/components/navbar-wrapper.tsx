@@ -9,6 +9,7 @@ const NAVBAR_HEIGHT = 80;
 
 export default function NavbarWrapper() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
   const lastActive = useRef('home');
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function NavbarWrapper() {
       if (rafId) return;
       rafId = requestAnimationFrame(() => {
         getActiveSection();
+        setIsScrolled(window.scrollY > 20);
         rafId = null;
       });
     };
@@ -72,10 +74,10 @@ export default function NavbarWrapper() {
   return (
     <>
       <div className="hidden md:block">
-        <NavbarContent activeSection={activeSection} />
+        <NavbarContent activeSection={activeSection} isScrolled={isScrolled} />
       </div>
       <div className="md:hidden">
-        <NavbarMobile activeSection={activeSection} />
+        <NavbarMobile activeSection={activeSection} isScrolled={isScrolled} />
       </div>
     </>
   );
