@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Kurt Mikhael Purba",
     "kurt portfolio",
     "ITB informatics",
-    "software engineer Indonesia",
+    "Software engineer Indonesia",
     "data science student",
     "AI ML portfolio",
     "frontend developer",
