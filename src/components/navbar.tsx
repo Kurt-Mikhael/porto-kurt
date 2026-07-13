@@ -5,10 +5,11 @@ import { memo, useCallback, useRef } from "react";
 
 interface NavbarContentProps {
   activeSection?: string;
+  isScrolled?: boolean;
 }
 
-const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: NavbarContentProps) {
-  const navRef = useRef<HTMLElement>(null);
+const NavbarContent = memo(function NavbarContent({ activeSection = 'home', isScrolled = false }: NavbarContentProps) {
+  const navRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -51,14 +52,27 @@ const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: Na
   ];
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-[#07080a] border-b border-[#242728]">
-      <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+    <div
+      ref={navRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-[padding] duration-300 ease-out ${
+        isScrolled ? 'pt-3 px-3 md:px-4' : 'pt-0 px-0'
+      }`}
+    >
+      <nav
+        className={`mx-auto flex items-center justify-between transition-all duration-300 ease-out ${
+          isScrolled
+            ? 'max-w-7xl py-2.5 px-4 bg-[#07080a]/70 backdrop-blur-xl border border-[#242728] rounded-2xl shadow-lg shadow-black/30'
+            : 'max-w-[2000px] py-5 px-8 bg-[#07080a] border-b border-[#242728] rounded-none'
+        }`}
+      >
         {/* Logo */}
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-[#121212] rounded-lg flex items-center justify-center text-white font-bold text-xl border border-[#242728]">
             K
           </div>
-          <span className="text-2xl font-semibold tracking-tighter text-white">Kurt</span>
+          <span className={`font-semibold tracking-tighter text-white transition-all duration-300 ease-out ${
+            isScrolled ? 'text-xl' : 'text-2xl'
+          }`}>Kurt</span>
         </div>
 
         {/* Menu */}
@@ -91,8 +105,8 @@ const NavbarContent = memo(function NavbarContent({ activeSection = 'home' }: Na
         >
           Get in Touch
         </button>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 });
 
