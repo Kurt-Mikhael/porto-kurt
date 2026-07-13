@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { memo } from 'react';
-import { useScrollReveal } from '@/app/hooks/hooks';
+import { useScrollReveal, useColumnCount } from '@/app/hooks/hooks';
 import techStackData from '@/data/tech-stack.json';
 
 interface TechStackItemProps {
@@ -10,11 +10,12 @@ interface TechStackItemProps {
   logo: string;
   category: string;
   index: number;
+  rowIndex: number;
   className?: string;
 }
 
-const TechStackItem = memo(function TechStackItem({ name, logo, category, index, className = "" }: TechStackItemProps) {
-  const { ref, isRevealed } = useScrollReveal({ staggerDelay: index * 50 });
+const TechStackItem = memo(function TechStackItem({ name, logo, category, index, rowIndex, className = "" }: TechStackItemProps) {
+  const { ref, isRevealed } = useScrollReveal({ staggerDelay: rowIndex * 100 });
 
   const isElevated = index % 2 === 1;
 
@@ -73,17 +74,27 @@ export function TechStackContainer({ children }: { children: React.ReactNode }) 
 }
 
 export function TechStackList() {
+  const cols = useColumnCount([
+    { minWidth: 640, cols: 3 },
+    { minWidth: 768, cols: 4 },
+    { minWidth: 1024, cols: 5 },
+  ]);
+
   return (
     <TechStackContainer>
-      {techStackData.map((tech, index) => (
-        <TechStackItem
-          key={tech.id}
-          name={tech.name}
-          logo={tech.logo}
-          category={tech.category}
-          index={index}
-        />
-      ))}
+      {techStackData.map((tech, index) => {
+        const rowIndex = Math.floor(index / cols);
+        return (
+          <TechStackItem
+            key={tech.id}
+            name={tech.name}
+            logo={tech.logo}
+            category={tech.category}
+            index={index}
+            rowIndex={rowIndex}
+          />
+        );
+      })}
     </TechStackContainer>
   );
 }
