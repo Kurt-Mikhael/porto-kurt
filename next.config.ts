@@ -3,6 +3,23 @@ import type { NextConfig } from "next";
 const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
+  // Redirects: 301 from old Vercel subdomain to new custom domain (preserves SEO juice)
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'info-kurt.vercel.app',
+          },
+        ],
+        destination: 'https://kurtmikhael.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   // Security Headers
   async headers() {
     return [
