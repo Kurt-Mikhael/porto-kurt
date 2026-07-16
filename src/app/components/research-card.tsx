@@ -60,19 +60,6 @@ const ResearchCard = memo(function ResearchCard({
 
       {/* Body */}
       <div className="flex flex-col p-6 sm:p-8 gap-4">
-        {/* Badge */}
-        <div className="flex items-center gap-3">
-          <span
-            className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-medium tracking-wide uppercase"
-            style={{
-              backgroundColor: "rgba(87,193,255,0.15)",
-              color: "#57c1ff",
-            }}
-          >
-            Research
-          </span>
-        </div>
-
         {/* Title */}
         <h3 className="text-xl sm:text-2xl font-semibold text-[#f4f4f6] tracking-[-0.02em] leading-tight">
           {title}
