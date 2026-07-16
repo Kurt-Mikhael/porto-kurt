@@ -30,7 +30,6 @@ const MetalCard = memo(function MetalCard({ logoSrc, logoAlt, title, description
           }}
         >
             <div className="flex flex-row items-start gap-4 sm:gap-5 p-5 sm:p-6">
-                {/* Logo tile */}
                 <div
                   className="exp-logo-tile group-hover:border-[rgba(255,255,255,0.10)] transition-colors duration-[350ms]"
                 >
