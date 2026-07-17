@@ -40,6 +40,12 @@
     "imgAlt": "RAG Chatbot",
     "description": "A retrieval-augmented generation (RAG) chatbot designed to provide accurate and contextually relevant responses about Satedu.",
     "link": "https://www.satuedu.id/"
+  },
+  {
+    "id": 7,
+    "imgSrc": "/local-sheet.webp",
+    "imgAlt": "Local Sheet",
+    "description": "A local spreadsheet app for managing and organizing data offline and online, with server syncing capabilities.",
+    "link": "https://github.com/Kurt-Mikhael/local-sheets"
   }
-
 ]
